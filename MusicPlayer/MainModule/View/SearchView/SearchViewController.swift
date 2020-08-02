@@ -53,6 +53,7 @@ extension SearchViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TrackCell", for: indexPath) as! TrackViewCell
         guard let cellViewModel = presenter.tracks?[indexPath.row] else { return TrackViewCell()}
         cell.set(viewModel: cellViewModel)
+        
         return cell
     }
 }
@@ -62,11 +63,11 @@ extension SearchViewController: UITableViewDataSource {
 extension SearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let track = presenter.tracks?[indexPath.row]//.previewUrl
+        let track = presenter.tracks?[indexPath.row]
         presenter.playTrack(previewUrl: track?.previewUrl)
-        presenter.tapOnTheTrack(track: track)
+        presenter.tapOnTheTrack(track: track, player: presenter.player)
+        presenter.selectTrackIndex = indexPath.row
     }
-    
 }
 
 //MARK: - UISearchBarDelegate
@@ -94,3 +95,41 @@ extension SearchViewController: SearchResponseViewProtocol {
     }
 }
 
+
+// MARK: - Delegat
+extension SearchViewController{
+
+private func getTrack(isForwardTrack: Bool) -> TrackModel.Cell? {
+    guard let indexPath = tableView.indexPathForSelectedRow else { return nil }
+    tableView.deselectRow(at: indexPath, animated: true)
+    var nextIndexPath: IndexPath!
+    if isForwardTrack {
+        nextIndexPath = IndexPath(row: indexPath.row + 1, section: indexPath.section)
+        if nextIndexPath.row == presenter.tracks?.count {
+            nextIndexPath.row = 0
+        }
+    } else {
+        nextIndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
+        if nextIndexPath.row == -1 {
+            nextIndexPath.row = (presenter.tracks?.count ?? 0) - 1
+        }
+    }
+    
+    tableView.selectRow(at: nextIndexPath, animated: true, scrollPosition: .none)
+    let cellViewModel = presenter.tracks?[nextIndexPath.row]
+    return cellViewModel
+}
+}
+
+extension SearchViewController: TrackMovingDelegate {
+    func moveBackForPreviousTrack() -> TrackModel.Cell? {
+        print("go back")
+        return getTrack(isForwardTrack: false)
+    }
+    
+    func moveForwardForPreviousTrack() -> TrackModel.Cell? {
+        return getTrack(isForwardTrack: true)
+    }
+    
+    
+}

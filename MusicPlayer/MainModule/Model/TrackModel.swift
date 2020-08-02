@@ -16,6 +16,7 @@ struct TrackModel {
         var artistName: String
         var iconUrlString: String?
         var previewUrl: String?
+        var isKept = false
     }
     
     let cells: [Cell]

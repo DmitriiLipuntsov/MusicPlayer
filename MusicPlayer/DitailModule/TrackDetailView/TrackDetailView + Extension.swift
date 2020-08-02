@@ -58,7 +58,7 @@ extension TrackDetailView {
         
         label.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).isActive = true
         label.rightAnchor.constraint(equalTo: rightAnchor, constant: -bounds.width / 2).isActive = true
-        label.topAnchor.constraint(equalTo: sliderCurrentTime.bottomAnchor, constant: 0).isActive = true
+        label.topAnchor.constraint(equalTo: currentTimeSlider.bottomAnchor, constant: 0).isActive = true
         label.textAlignment = .left
         label.textColor = #colorLiteral(red: 0.5637609363, green: 0.5688328743, blue: 0.5901173949, alpha: 1)
         label.font = UIFont.systemFont(ofSize: 15)
@@ -74,7 +74,7 @@ extension TrackDetailView {
         
         label.leftAnchor.constraint(equalTo: leftAnchor, constant: bounds.width / 2).isActive = true
         label.rightAnchor.constraint(equalTo: rightAnchor, constant: 0).isActive = true
-        label.topAnchor.constraint(equalTo: sliderCurrentTime.bottomAnchor, constant: 0).isActive = true
+        label.topAnchor.constraint(equalTo: currentTimeSlider.bottomAnchor, constant: 0).isActive = true
         label.textAlignment = .right
         label.textColor = #colorLiteral(red: 0.5637609363, green: 0.5688328743, blue: 0.5901173949, alpha: 1)
         label.font = UIFont.systemFont(ofSize: 15)

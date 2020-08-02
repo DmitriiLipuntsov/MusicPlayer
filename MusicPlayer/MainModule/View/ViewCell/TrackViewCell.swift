@@ -16,6 +16,7 @@ class TrackViewCell: UITableViewCell {
     @IBOutlet weak var trackNameLabel: UILabel!
     @IBOutlet weak var artistNameLabel: UILabel!
     @IBOutlet weak var collectionNameLabel: UILabel!
+    @IBOutlet weak var saveTrackButton: UIButton!
     
     var presenter: SearchResponseViewPresenterProtocol?
     

@@ -28,6 +28,7 @@ class AssemblyModuleBuilder: AssemblyBuilderProtocol {
         let networkService = NetworkService()
         let presenter = TrackDetailPresenter(view: view, networkService: networkService, router: router, track: track)
         view.presenter = presenter
+        
         return view
     }
     
