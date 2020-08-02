@@ -11,13 +11,13 @@ import UIKit
 class TrackControlView: UIView {
     
     lazy var previousTrackButton = makePreviousTrackButton()
-    lazy var playPouseButton = makePlayPouseButton()
+    lazy var playPauseButton = makePlayPouseButton()
     lazy var nextTrackButton = makeNextTrackButton()
     
     override func layoutSubviews() {
         super.layoutSubviews()
         previousTrackButton.setImage(#imageLiteral(resourceName: "Left"), for: .normal)
-        playPouseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+        playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         nextTrackButton.setImage(#imageLiteral(resourceName: "Right"), for: .normal)
     }
     
