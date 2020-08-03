@@ -29,7 +29,7 @@ class TrackControlView: UIView {
         button.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).isActive = true
         button.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
         button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
-        button.widthAnchor.constraint(equalToConstant: bounds.width / 3).isActive = true
+        button.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1/3).isActive = true
         
         return button
     }
@@ -43,7 +43,7 @@ class TrackControlView: UIView {
         button.leftAnchor.constraint(equalTo: previousTrackButton.rightAnchor, constant: 0).isActive = true
         button.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
         button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
-        button.rightAnchor.constraint(equalTo: nextTrackButton.leftAnchor, constant: 0).isActive = true
+        button.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1/3).isActive = true
         
         return button
     }
@@ -54,10 +54,11 @@ class TrackControlView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         addSubview(button)
         
+        button.leftAnchor.constraint(equalTo: playPauseButton.rightAnchor, constant: 0).isActive = true
         button.rightAnchor.constraint(equalTo: rightAnchor, constant: 0).isActive = true
         button.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
         button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
-        button.widthAnchor.constraint(equalToConstant: bounds.width / 3).isActive = true
+        button.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1/3).isActive = true
         
         return button
     }
