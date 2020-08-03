@@ -9,20 +9,11 @@
 import UIKit
 import AVKit
 
-protocol TrackMovingDelegate {
-    func moveBackForPreviousTrack() -> TrackModel.Cell?
-    func moveForwardForPreviousTrack() -> TrackModel.Cell?
-}
-
-
 class TrackDetailViewController: UIViewController {
     
     var presenter: TrackDetailPresenterProtocol?
-    var searchPresenter: SearchResponseViewPresenterProtocol?
     var player: AVPlayer!
     private var trackDetailView = TrackDetailView()
-    
-    var delegate: TrackMovingDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,9 +87,7 @@ class TrackDetailViewController: UIViewController {
     
     @objc func previousTrackButtonPressed() {
         print("previousTrackButtonPressed -----------")
-        let cellViewModel = delegate?.moveBackForPreviousTrack()
-        guard let cellInfo = cellViewModel else { return }
-        self.setTrack(track: cellInfo, player: player)
+        
     }
     
     @objc func playPouseButtonPressed() {
@@ -113,10 +102,7 @@ class TrackDetailViewController: UIViewController {
     
     @objc func nextTrackButtonPressed() {
         print("nextTrackButtonPressed --------------")
-        searchPresenter?.setPreviousTrack(isForwardTrack: true, complition: { [weak self] trackCell in
-            guard let self = self else { return }
-            self.setTrack(track: trackCell, player: self.player)
-        })
+        
     }
     
     func loadAllView() {

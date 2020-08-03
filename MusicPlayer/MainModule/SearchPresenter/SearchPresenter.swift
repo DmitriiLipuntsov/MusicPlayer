@@ -88,26 +88,6 @@ class SearchPresenter: SearchResponseViewPresenterProtocol {
         router?.showDetail(track: track, player: player)
     }
     
-//    private func getForwardOrPreviousTrack(isForwardTrack: Bool) -> TrackModel.Cell? {
-//        guard let selectTrackIndex = selectTrackIndex else { return nil }
-//        var nextTrackIndex: Int!
-//        guard let tracks = tracks else { return nil }
-//        if isForwardTrack {
-//            nextTrackIndex = selectTrackIndex + 1
-//            if nextTrackIndex == tracks.count {
-//                nextTrackIndex = 0
-//            }
-//        } else {
-//            nextTrackIndex = selectTrackIndex - 1
-//            if nextTrackIndex == -1 {
-//                nextTrackIndex = tracks.count - 1
-//            }
-//        }
-//        
-//        let cellViewModel = tracks[nextTrackIndex]
-//        return cellViewModel
-//    }
-    
     func setPreviousTrack(isForwardTrack: Bool, complition: @escaping (TrackModel.Cell?) -> Void) {
         guard let selectTrackIndex = selectTrackIndex else { return }
         var nextTrackIndex: Int!

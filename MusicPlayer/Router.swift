@@ -18,7 +18,6 @@ protocol RouterProtocol: RouterMain {
     func initialViewController()
     func showDetail(track: TrackModel.Cell?, player: AVPlayer)
     func popToRoot()
-    func nextTrack(isForwardTrack: Bool, complition: @escaping (TrackModel.Cell?) -> ())
 }
 
 class Router: RouterProtocol {
@@ -41,7 +40,6 @@ class Router: RouterProtocol {
     func showDetail(track: TrackModel.Cell?, player: AVPlayer) {
         if let navigationController = navigationController {
             guard let detailViewController = assemblyBuilder?.creatDetailModule(router: self, track: track, player: player) else { return }
-            //navigationController.pushViewController(detailViewController, animated: true)
             navigationController.present(detailViewController, animated: true, completion: nil)
         }
     }
@@ -52,11 +50,5 @@ class Router: RouterProtocol {
             
         }
     }
-    
-    func nextTrack(isForwardTrack: Bool, complition: @escaping (TrackModel.Cell?) -> ()) {
-        setPreviousTrack(isForwardTrack: isForwardTrack, complition: complition)
-    }
-    func setPreviousTrack(isForwardTrack: Bool, complition: @escaping (TrackModel.Cell?) -> Void) {
-        
-    }
+
 }

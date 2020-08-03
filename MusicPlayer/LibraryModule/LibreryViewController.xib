@@ -1,13 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LibreryViewController" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LibreryViewController" customModule="MusicPlayer" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="9LA-gU-cZt" id="aOa-QD-ahv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,8 +17,50 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9LA-gU-cZt">
+                    <rect key="frame" x="0.0" y="95" width="375" height="572"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HQG-bH-EoJ">
+                    <rect key="frame" x="20" y="20" width="140" height="55"/>
+                    <color key="backgroundColor" red="0.92156862750000001" green="0.91764705879999997" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="140" id="Qoz-9H-Rhv"/>
+                        <constraint firstAttribute="height" constant="55" id="TUd-0J-C7a"/>
+                    </constraints>
+                    <color key="tintColor" red="0.90980392160000001" green="0.27058823529999998" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <state key="normal" image="play.fill" catalog="system"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="po6-ju-sWE">
+                    <rect key="frame" x="216" y="20" width="143" height="55"/>
+                    <color key="backgroundColor" red="0.92156862750000001" green="0.91764705879999997" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="143" id="0Lj-ve-2dl"/>
+                        <constraint firstAttribute="height" constant="55" id="VMa-id-Ngt"/>
+                    </constraints>
+                    <color key="tintColor" red="0.90980392160000001" green="0.27058823529999998" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <state key="normal" image="arrow.2.circlepath" catalog="system"/>
+                </button>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="po6-ju-sWE" secondAttribute="trailing" constant="16" id="2rM-0d-hvg"/>
+                <constraint firstItem="9LA-gU-cZt" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="4TF-He-pRD"/>
+                <constraint firstItem="po6-ju-sWE" firstAttribute="leading" secondItem="HQG-bH-EoJ" secondAttribute="trailing" constant="56" id="D8R-eC-yUl"/>
+                <constraint firstItem="HQG-bH-EoJ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Gbo-h1-xUg"/>
+                <constraint firstItem="9LA-gU-cZt" firstAttribute="top" secondItem="HQG-bH-EoJ" secondAttribute="bottom" constant="20" id="Gqy-Hb-FL0"/>
+                <constraint firstItem="9LA-gU-cZt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Xaq-0J-fYW"/>
+                <constraint firstItem="HQG-bH-EoJ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="fIg-Js-Rup"/>
+                <constraint firstItem="9LA-gU-cZt" firstAttribute="top" secondItem="po6-ju-sWE" secondAttribute="bottom" constant="20" id="fzu-vP-rO5"/>
+                <constraint firstItem="9LA-gU-cZt" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="w44-By-h48"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="138.40000000000001" y="152.47376311844079"/>
         </view>
     </objects>
+    <resources>
+        <image name="arrow.2.circlepath" catalog="system" width="64" height="50"/>
+        <image name="play.fill" catalog="system" width="58" height="64"/>
+    </resources>
 </document>

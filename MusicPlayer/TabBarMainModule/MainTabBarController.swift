@@ -17,7 +17,6 @@ protocol MainTabBarControllerProtocol: class {
 class MainTabBarController: UITabBarController {
     
     let searchVC: SearchViewController = SearchViewController()
-    let trackDetailView: TrackDetailViewController = TrackDetailViewController()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +24,6 @@ class MainTabBarController: UITabBarController {
         tabBar.tintColor = #colorLiteral(red: 1, green: 0, blue: 0.3764705882, alpha: 1)
         
         creatModuls()
-        trackDetailView.delegate = searchVC
     }
     
     

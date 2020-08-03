@@ -25,11 +25,6 @@ class TrackViewCell: UITableViewCell {
         
     }
     
-    deinit {
-        playPauseOutlet.setImage(#imageLiteral(resourceName: "play"), for: .normal)
-        print("deinit-------")
-    }
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         

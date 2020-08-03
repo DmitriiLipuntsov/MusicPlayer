@@ -15,7 +15,7 @@ class SearchViewController: UIViewController {
     
     var presenter: SearchResponseViewPresenterProtocol!
     private var timer: Timer?
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,38 +98,26 @@ extension SearchViewController: SearchResponseViewProtocol {
 
 // MARK: - Delegat
 extension SearchViewController{
-
-private func getTrack(isForwardTrack: Bool) -> TrackModel.Cell? {
-    guard let indexPath = tableView.indexPathForSelectedRow else { return nil }
-    tableView.deselectRow(at: indexPath, animated: true)
-    var nextIndexPath: IndexPath!
-    if isForwardTrack {
-        nextIndexPath = IndexPath(row: indexPath.row + 1, section: indexPath.section)
-        if nextIndexPath.row == presenter.tracks?.count {
-            nextIndexPath.row = 0
+    
+    private func getTrack(isForwardTrack: Bool) -> TrackModel.Cell? {
+        guard let indexPath = tableView.indexPathForSelectedRow else { return nil }
+        tableView.deselectRow(at: indexPath, animated: true)
+        var nextIndexPath: IndexPath!
+        if isForwardTrack {
+            nextIndexPath = IndexPath(row: indexPath.row + 1, section: indexPath.section)
+            if nextIndexPath.row == presenter.tracks?.count {
+                nextIndexPath.row = 0
+            }
+        } else {
+            nextIndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
+            if nextIndexPath.row == -1 {
+                nextIndexPath.row = (presenter.tracks?.count ?? 0) - 1
+            }
         }
-    } else {
-        nextIndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
-        if nextIndexPath.row == -1 {
-            nextIndexPath.row = (presenter.tracks?.count ?? 0) - 1
-        }
+        
+        tableView.selectRow(at: nextIndexPath, animated: true, scrollPosition: .none)
+        let cellViewModel = presenter.tracks?[nextIndexPath.row]
+        return cellViewModel
     }
-    
-    tableView.selectRow(at: nextIndexPath, animated: true, scrollPosition: .none)
-    let cellViewModel = presenter.tracks?[nextIndexPath.row]
-    return cellViewModel
-}
 }
 
-extension SearchViewController: TrackMovingDelegate {
-    func moveBackForPreviousTrack() -> TrackModel.Cell? {
-        print("go back")
-        return getTrack(isForwardTrack: false)
-    }
-    
-    func moveForwardForPreviousTrack() -> TrackModel.Cell? {
-        return getTrack(isForwardTrack: true)
-    }
-    
-    
-}

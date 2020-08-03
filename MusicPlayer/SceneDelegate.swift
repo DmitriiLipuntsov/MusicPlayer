@@ -17,13 +17,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-//        let navigationController = UINavigationController()
-//        let assemblyBuilder = AssemblyModuleBuilder()
-//        let router = Router(navigationController: navigationController, assemblyBuilder: assemblyBuilder)
-//        router.initialViewController()
-//
-//        navigationController.navigationBar.prefersLargeTitles = true
+
         let tabBar = MainTabBarController()
+        
         window?.rootViewController = tabBar
         window?.makeKeyAndVisible()
     }
