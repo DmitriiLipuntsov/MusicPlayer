@@ -10,7 +10,7 @@ import UIKit
 
 protocol MainTabBarControllerProtocol: class {
     func minimizeTrackDetailController()
-    func maximaizeTrackDetailController(viewModel: TrackModel.Cell?)
+    func maximaizeTrackDetailController(viewModel: TrackModel.Track?)
 }
 
 

@@ -10,7 +10,7 @@ import Foundation
 
 struct TrackModel {
     
-    struct Cell {
+    struct Track {
         var trackName: String
         var collectionName: String?
         var artistName: String
@@ -19,6 +19,6 @@ struct TrackModel {
         var isKept = false
     }
     
-    let cells: [Cell]
+    let tracks: [Track]
     
 }

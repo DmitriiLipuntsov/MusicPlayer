@@ -21,6 +21,7 @@
 		771177F324926B4500B0C36E /* TrackViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771177F124926B4500B0C36E /* TrackViewCell.swift */; };
 		771177F424926B4500B0C36E /* TrackViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 771177F224926B4500B0C36E /* TrackViewCell.xib */; };
 		7751F5FD24D9B255009607CE /* Plan.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 7751F5FC24D9B255009607CE /* Plan.rtf */; };
+		7751F62324D9D754009607CE /* TrackCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7751F62124D9D754009607CE /* TrackCoreData.xcdatamodeld */; };
 		7754D1A024A0CE4000AF5D21 /* AssemblyModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754D19F24A0CE4000AF5D21 /* AssemblyModuleBuilder.swift */; };
 		7754D1A224A0CE9C00AF5D21 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754D1A124A0CE9C00AF5D21 /* Router.swift */; };
 		7754D1A424A104A200AF5D21 /* TrackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754D1A324A104A200AF5D21 /* TrackModel.swift */; };
@@ -54,6 +55,7 @@
 		771177F124926B4500B0C36E /* TrackViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewCell.swift; sourceTree = "<group>"; };
 		771177F224926B4500B0C36E /* TrackViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackViewCell.xib; sourceTree = "<group>"; };
 		7751F5FC24D9B255009607CE /* Plan.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Plan.rtf; sourceTree = "<group>"; };
+		7751F62224D9D754009607CE /* TrackCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TrackCoreData.xcdatamodel; sourceTree = "<group>"; };
 		7754D19F24A0CE4000AF5D21 /* AssemblyModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyModuleBuilder.swift; sourceTree = "<group>"; };
 		7754D1A124A0CE9C00AF5D21 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		7754D1A324A104A200AF5D21 /* TrackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackModel.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				771177C524924F3800B0C36E /* Services */,
 				7757D8CD24D58FE200CDE725 /* Helpers */,
 				7705FF4024862D30007D8663 /* Main.storyboard */,
+				7751F62124D9D754009607CE /* TrackCoreData.xcdatamodeld */,
 				7705FF4324862D31007D8663 /* Assets.xcassets */,
 				7705FF4524862D31007D8663 /* LaunchScreen.storyboard */,
 				7705FF4824862D31007D8663 /* Info.plist */,
@@ -384,6 +387,7 @@
 				7754D1AA24A2655800AF5D21 /* TrackDetailViewController.swift in Sources */,
 				7754D1B224A26B9F00AF5D21 /* TrackDetailView.swift in Sources */,
 				7705FFD824923E78007D8663 /* NetworkService.swift in Sources */,
+				7751F62324D9D754009607CE /* TrackCoreData.xcdatamodeld in Sources */,
 				7754D1A424A104A200AF5D21 /* TrackModel.swift in Sources */,
 				7757D8CF24D58FFF00CDE725 /* CMTime + Extension.swift in Sources */,
 				7754D1AC24A2670300AF5D21 /* TrackDetailPresenter.swift in Sources */,
@@ -594,6 +598,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7751F62124D9D754009607CE /* TrackCoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7751F62224D9D754009607CE /* TrackCoreData.xcdatamodel */,
+			);
+			currentVersion = 7751F62224D9D754009607CE /* TrackCoreData.xcdatamodel */;
+			path = TrackCoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7705FF2F24862D30007D8663 /* Project object */;
 }

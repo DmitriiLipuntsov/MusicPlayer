@@ -137,7 +137,7 @@ class TrackDetailViewController: UIViewController {
 
 extension TrackDetailViewController: TrackDetailViewProtocol {
     
-    func setTrack(track: TrackModel.Cell?) {
+    func setTrack(track: TrackModel.Track?) {
         trackDetailView.artistNameLabel.text = track?.artistName
         trackDetailView.trackNameLabel.text = track?.trackName
         let string600 = track?.iconUrlString?.replacingOccurrences(of: "100x100", with: "600x600")

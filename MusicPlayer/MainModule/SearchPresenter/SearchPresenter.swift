@@ -17,9 +17,9 @@ protocol SearchResponseViewPresenterProtocol: class {
     init(view: SearchResponseViewProtocol,
          networkService: NetworkServiceProtocol,
          router: RouterProtocol)
-    var tracks: [TrackModel.Cell]? { get }
+    var tracks: [TrackModel.Track]? { get }
     func getTracks(searchText: String)
-    func tapOnTheTrack(track: TrackModel.Cell?)
+    func tapOnTheTrack(track: TrackModel.Track?)
 }
 
 class SearchPresenter: SearchResponseViewPresenterProtocol {
@@ -28,7 +28,7 @@ class SearchPresenter: SearchResponseViewPresenterProtocol {
     var trackDetailPresenter: TrackDetailPresenterProtocol!
     let networkService: NetworkServiceProtocol!
     var router: RouterProtocol?
-    var tracks: [TrackModel.Cell]?
+    var tracks: [TrackModel.Track]?
     
     required init(view: SearchResponseViewProtocol,
                   networkService: NetworkServiceProtocol,
@@ -57,15 +57,15 @@ class SearchPresenter: SearchResponseViewPresenterProtocol {
         }
     }
     
-    func trackModel(track: Track) -> TrackModel.Cell {
-        return TrackModel.Cell.init(trackName: track.trackName,
+    func trackModel(track: Track) -> TrackModel.Track {
+        return TrackModel.Track.init(trackName: track.trackName,
                                     collectionName: track.collectionName,
                                     artistName: track.artistName,
                                     iconUrlString: track.artworkUrl100,
                                     previewUrl: track.previewUrl)
     }
     
-    func tapOnTheTrack(track: TrackModel.Cell?) {
+    func tapOnTheTrack(track: TrackModel.Track?) {
         router?.showDetail(track: track)
     }
     

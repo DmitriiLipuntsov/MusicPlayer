@@ -16,9 +16,9 @@ protocol RouterMain {
 
 protocol RouterProtocol: RouterMain {
     func initialViewController()
-    func showDetail(track: TrackModel.Cell?)
+    func showDetail(track: TrackModel.Track?)
     func popToRoot()
-    func setTrack(isNextTrack: Bool, complition: @escaping (TrackModel.Cell?) -> ())
+    func setTrack(isNextTrack: Bool, complition: @escaping (TrackModel.Track?) -> ())
 }
 
 class Router: RouterProtocol {
@@ -40,7 +40,7 @@ class Router: RouterProtocol {
         }
     }
     
-    func showDetail(track: TrackModel.Cell?) {
+    func showDetail(track: TrackModel.Track?) {
         if let navigationController = navigationController {
             guard let detailViewController = assemblyBuilder?.creatDetailModule(router: self, track: track) else { return }
             navigationController.present(detailViewController, animated: true, completion: nil)
@@ -54,7 +54,7 @@ class Router: RouterProtocol {
         }
     }
     
-    func setTrack(isNextTrack: Bool, complition: @escaping (TrackModel.Cell?) -> ()) {
+    func setTrack(isNextTrack: Bool, complition: @escaping (TrackModel.Track?) -> ()) {
         complition(searchVC?.getTrack(isNextTrack: isNextTrack))
     }
 

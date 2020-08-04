@@ -31,7 +31,7 @@ class TrackViewCell: UITableViewCell {
         
     }
     
-    func set(viewModel: TrackModel.Cell) {
+    func set(viewModel: TrackModel.Track) {
         
         trackNameLabel.text = viewModel.trackName
         artistNameLabel.text = viewModel.artistName

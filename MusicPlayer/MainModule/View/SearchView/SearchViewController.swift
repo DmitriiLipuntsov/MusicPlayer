@@ -96,7 +96,7 @@ extension SearchViewController: SearchResponseViewProtocol {
 // MARK: - Delegat
 extension SearchViewController{
     
-    func getTrack(isNextTrack: Bool) -> TrackModel.Cell? {
+    func getTrack(isNextTrack: Bool) -> TrackModel.Track? {
         guard let indexPath = tableView.indexPathForSelectedRow else { return nil }
         tableView.deselectRow(at: indexPath, animated: true)
         var nextIndexPath: IndexPath!

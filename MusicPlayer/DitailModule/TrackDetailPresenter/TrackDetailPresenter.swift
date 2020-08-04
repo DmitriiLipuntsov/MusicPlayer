@@ -9,16 +9,16 @@
 import Foundation
 
 protocol TrackDetailViewProtocol: class {
-    func setTrack(track: TrackModel.Cell?)
+    func setTrack(track: TrackModel.Track?)
 }
 
 protocol TrackDetailPresenterProtocol {
     init(view: TrackDetailViewProtocol,
          networkService: NetworkServiceProtocol,
          router: RouterProtocol,
-         track: TrackModel.Cell?
+         track: TrackModel.Track?
     )
-    var track: TrackModel.Cell? { get }
+    var track: TrackModel.Track? { get }
     func setTrack()
     func popToRoot()
     func nextTrack(isNextTrack: Bool)
@@ -28,14 +28,14 @@ class TrackDetailPresenter: TrackDetailPresenterProtocol {
     
     weak var view: TrackDetailViewProtocol?
     var networkService: NetworkServiceProtocol!
-    var track: TrackModel.Cell?
+    var track: TrackModel.Track?
     var router: RouterProtocol?
 
     
     required init(view: TrackDetailViewProtocol,
          networkService: NetworkServiceProtocol,
          router: RouterProtocol,
-         track: TrackModel.Cell?
+         track: TrackModel.Track?
     ) {
         self.view = view
         self.networkService = networkService
