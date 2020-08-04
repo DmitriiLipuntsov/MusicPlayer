@@ -23,6 +23,7 @@ protocol TrackDetailPresenterProtocol {
     var player: AVPlayer? { get }
     func setTrack()
     func popToRoot()
+    func nextTrack(isNextTrack: Bool)
 }
 
 class TrackDetailPresenter: TrackDetailPresenterProtocol {
@@ -53,6 +54,13 @@ class TrackDetailPresenter: TrackDetailPresenterProtocol {
     
     public func setTrack() {
         view?.setTrack(track: track, player: player)
+    }
+    
+    func nextTrack(isNextTrack: Bool) {
+        router?.setTrack(isNextTrack: isNextTrack) { [weak self] newTrack in
+            guard let self = self else { return }
+            self.view?.setTrack(track: newTrack, player: self.player)
+        }
     }
     
 }

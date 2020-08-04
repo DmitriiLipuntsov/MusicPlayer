@@ -18,12 +18,14 @@ protocol RouterProtocol: RouterMain {
     func initialViewController()
     func showDetail(track: TrackModel.Cell?, player: AVPlayer)
     func popToRoot()
+    func setTrack(isNextTrack: Bool, complition: @escaping (TrackModel.Cell?) -> ())
 }
 
 class Router: RouterProtocol {
     
     var navigationController: UINavigationController?
     var assemblyBuilder: AssemblyBuilderProtocol?
+    var searchVC: SearchViewController?
     
     init(navigationController: UINavigationController, assemblyBuilder: AssemblyBuilderProtocol) {
         self.navigationController = navigationController
@@ -34,6 +36,7 @@ class Router: RouterProtocol {
         if let navigationController = navigationController {
             guard let mainViewController = assemblyBuilder?.creatMainModule(router: self) else { return }
             navigationController.viewControllers = [mainViewController]
+            searchVC = mainViewController as? SearchViewController
         }
     }
     
@@ -49,6 +52,10 @@ class Router: RouterProtocol {
             navigationController.popToRootViewController(animated: true)
             
         }
+    }
+    
+    func setTrack(isNextTrack: Bool, complition: @escaping (TrackModel.Cell?) -> ()) {
+        complition(searchVC?.getTrack(isNextTrack: isNextTrack))
     }
 
 }

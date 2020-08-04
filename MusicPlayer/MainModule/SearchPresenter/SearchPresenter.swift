@@ -20,11 +20,9 @@ protocol SearchResponseViewPresenterProtocol: class {
          router: RouterProtocol)
     var tracks: [TrackModel.Cell]? { get }
     var player: AVPlayer { get }
-    var selectTrackIndex: Int? { get set }
     func getTracks(searchText: String)
-    func playTrack(previewUrl: String?)
+    //func playTrack(previewUrl: String?)
     func tapOnTheTrack(track: TrackModel.Cell?, player: AVPlayer)
-    func setPreviousTrack(isForwardTrack: Bool, complition: @escaping (TrackModel.Cell?) -> Void) 
 }
 
 class SearchPresenter: SearchResponseViewPresenterProtocol {
@@ -34,7 +32,6 @@ class SearchPresenter: SearchResponseViewPresenterProtocol {
     let networkService: NetworkServiceProtocol!
     var router: RouterProtocol?
     var tracks: [TrackModel.Cell]?
-    var selectTrackIndex: Int?
     var player: AVPlayer = {
         let avPlayer = AVPlayer()
         avPlayer.automaticallyWaitsToMinimizeStalling = false
@@ -68,13 +65,13 @@ class SearchPresenter: SearchResponseViewPresenterProtocol {
         }
     }
     
-    func playTrack(previewUrl: String?) {
-        guard let url = URL(string: previewUrl ?? "") else { return }
-        let playerItem = AVPlayerItem(url: url)
-        player.replaceCurrentItem(with: playerItem)
-        player.play()
-
-    }
+//    func playTrack(previewUrl: String?) {
+//        guard let url = URL(string: previewUrl ?? "") else { return }
+//        let playerItem = AVPlayerItem(url: url)
+//        player.replaceCurrentItem(with: playerItem)
+//        player.play()
+//
+//    }
     
     func trackModel(track: Track) -> TrackModel.Cell {
         return TrackModel.Cell.init(trackName: track.trackName,
@@ -88,23 +85,4 @@ class SearchPresenter: SearchResponseViewPresenterProtocol {
         router?.showDetail(track: track, player: player)
     }
     
-    func setPreviousTrack(isForwardTrack: Bool, complition: @escaping (TrackModel.Cell?) -> Void) {
-        guard let selectTrackIndex = selectTrackIndex else { return }
-        var nextTrackIndex: Int!
-        guard let tracks = tracks else { return }
-        if isForwardTrack {
-            nextTrackIndex = selectTrackIndex + 1
-            if nextTrackIndex == tracks.count {
-                nextTrackIndex = 0
-            }
-        } else {
-            nextTrackIndex = selectTrackIndex - 1
-            if nextTrackIndex == -1 {
-                nextTrackIndex = tracks.count - 1
-            }
-        }
-        
-        let cellViewModel = tracks[nextTrackIndex]
-        complition(cellViewModel)
-    }
 }

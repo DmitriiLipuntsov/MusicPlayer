@@ -87,7 +87,7 @@ class TrackDetailViewController: UIViewController {
     
     @objc func previousTrackButtonPressed() {
         print("previousTrackButtonPressed -----------")
-        
+        presenter?.nextTrack(isNextTrack: false)
     }
     
     @objc func playPouseButtonPressed() {
@@ -102,7 +102,7 @@ class TrackDetailViewController: UIViewController {
     
     @objc func nextTrackButtonPressed() {
         print("nextTrackButtonPressed --------------")
-        
+        presenter?.nextTrack(isNextTrack: true)
     }
     
     func loadAllView() {
@@ -116,7 +116,13 @@ class TrackDetailViewController: UIViewController {
         
     }
     
-    
+    func playTrack(previewUrl: String?) {
+        guard let url = URL(string: previewUrl ?? "") else { return }
+        let playerItem = AVPlayerItem(url: url)
+        player.replaceCurrentItem(with: playerItem)
+        player.play()
+
+    }
     
     
 }
@@ -129,6 +135,7 @@ extension TrackDetailViewController: TrackDetailViewProtocol {
         guard let url = URL(string: string600 ?? "") else { return }
         trackDetailView.trackImageView.sd_setImage(with: url)
         self.player = player
+        playTrack(previewUrl: track?.previewUrl)
         observePlayerCurrantTime()
     }
     

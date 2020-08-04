@@ -64,9 +64,8 @@ extension SearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let track = presenter.tracks?[indexPath.row]
-        presenter.playTrack(previewUrl: track?.previewUrl)
+        //presenter.playTrack(previewUrl: track?.previewUrl)
         presenter.tapOnTheTrack(track: track, player: presenter.player)
-        presenter.selectTrackIndex = indexPath.row
     }
 }
 
@@ -99,11 +98,11 @@ extension SearchViewController: SearchResponseViewProtocol {
 // MARK: - Delegat
 extension SearchViewController{
     
-    private func getTrack(isForwardTrack: Bool) -> TrackModel.Cell? {
+    func getTrack(isNextTrack: Bool) -> TrackModel.Cell? {
         guard let indexPath = tableView.indexPathForSelectedRow else { return nil }
         tableView.deselectRow(at: indexPath, animated: true)
         var nextIndexPath: IndexPath!
-        if isForwardTrack {
+        if isNextTrack {
             nextIndexPath = IndexPath(row: indexPath.row + 1, section: indexPath.section)
             if nextIndexPath.row == presenter.tracks?.count {
                 nextIndexPath.row = 0
