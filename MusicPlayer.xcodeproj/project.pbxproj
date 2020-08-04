@@ -20,6 +20,7 @@
 		771177D72492552F00B0C36E /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 771177D52492552F00B0C36E /* SearchViewController.xib */; };
 		771177F324926B4500B0C36E /* TrackViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771177F124926B4500B0C36E /* TrackViewCell.swift */; };
 		771177F424926B4500B0C36E /* TrackViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 771177F224926B4500B0C36E /* TrackViewCell.xib */; };
+		7751F5FD24D9B255009607CE /* Plan.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 7751F5FC24D9B255009607CE /* Plan.rtf */; };
 		7754D1A024A0CE4000AF5D21 /* AssemblyModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754D19F24A0CE4000AF5D21 /* AssemblyModuleBuilder.swift */; };
 		7754D1A224A0CE9C00AF5D21 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754D1A124A0CE9C00AF5D21 /* Router.swift */; };
 		7754D1A424A104A200AF5D21 /* TrackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754D1A324A104A200AF5D21 /* TrackModel.swift */; };
@@ -52,6 +53,7 @@
 		771177D52492552F00B0C36E /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		771177F124926B4500B0C36E /* TrackViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewCell.swift; sourceTree = "<group>"; };
 		771177F224926B4500B0C36E /* TrackViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackViewCell.xib; sourceTree = "<group>"; };
+		7751F5FC24D9B255009607CE /* Plan.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Plan.rtf; sourceTree = "<group>"; };
 		7754D19F24A0CE4000AF5D21 /* AssemblyModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyModuleBuilder.swift; sourceTree = "<group>"; };
 		7754D1A124A0CE9C00AF5D21 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		7754D1A324A104A200AF5D21 /* TrackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackModel.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 		7705FF2E24862D30007D8663 = {
 			isa = PBXGroup;
 			children = (
+				7751F5FC24D9B255009607CE /* Plan.rtf */,
 				7705FF3924862D30007D8663 /* MusicPlayer */,
 				7705FF3824862D30007D8663 /* Products */,
 				04080484B052048D20723B67 /* Pods */,
@@ -322,6 +325,7 @@
 				7705FF4424862D31007D8663 /* Assets.xcassets in Resources */,
 				771177D72492552F00B0C36E /* SearchViewController.xib in Resources */,
 				7757D8CC24D1E46200CDE725 /* LibreryViewController.xib in Resources */,
+				7751F5FD24D9B255009607CE /* Plan.rtf in Resources */,
 				7705FF4224862D30007D8663 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AVKit
 
 class SearchViewController: UIViewController {
     
@@ -64,8 +63,7 @@ extension SearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let track = presenter.tracks?[indexPath.row]
-        //presenter.playTrack(previewUrl: track?.previewUrl)
-        presenter.tapOnTheTrack(track: track, player: presenter.player)
+        presenter.tapOnTheTrack(track: track)
     }
 }
 

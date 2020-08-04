@@ -58,7 +58,6 @@ class TrackControlView: UIView {
         button.rightAnchor.constraint(equalTo: rightAnchor, constant: 0).isActive = true
         button.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
         button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
-        button.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1/3).isActive = true
         
         return button
     }

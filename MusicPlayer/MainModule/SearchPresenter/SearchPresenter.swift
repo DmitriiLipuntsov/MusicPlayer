@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import AVKit
 
 protocol SearchResponseViewProtocol: class {
     func success()
@@ -19,10 +18,8 @@ protocol SearchResponseViewPresenterProtocol: class {
          networkService: NetworkServiceProtocol,
          router: RouterProtocol)
     var tracks: [TrackModel.Cell]? { get }
-    var player: AVPlayer { get }
     func getTracks(searchText: String)
-    //func playTrack(previewUrl: String?)
-    func tapOnTheTrack(track: TrackModel.Cell?, player: AVPlayer)
+    func tapOnTheTrack(track: TrackModel.Cell?)
 }
 
 class SearchPresenter: SearchResponseViewPresenterProtocol {
@@ -32,11 +29,6 @@ class SearchPresenter: SearchResponseViewPresenterProtocol {
     let networkService: NetworkServiceProtocol!
     var router: RouterProtocol?
     var tracks: [TrackModel.Cell]?
-    var player: AVPlayer = {
-        let avPlayer = AVPlayer()
-        avPlayer.automaticallyWaitsToMinimizeStalling = false
-        return avPlayer
-    }()
     
     required init(view: SearchResponseViewProtocol,
                   networkService: NetworkServiceProtocol,
@@ -65,14 +57,6 @@ class SearchPresenter: SearchResponseViewPresenterProtocol {
         }
     }
     
-//    func playTrack(previewUrl: String?) {
-//        guard let url = URL(string: previewUrl ?? "") else { return }
-//        let playerItem = AVPlayerItem(url: url)
-//        player.replaceCurrentItem(with: playerItem)
-//        player.play()
-//
-//    }
-    
     func trackModel(track: Track) -> TrackModel.Cell {
         return TrackModel.Cell.init(trackName: track.trackName,
                                     collectionName: track.collectionName,
@@ -81,8 +65,8 @@ class SearchPresenter: SearchResponseViewPresenterProtocol {
                                     previewUrl: track.previewUrl)
     }
     
-    func tapOnTheTrack(track: TrackModel.Cell?, player: AVPlayer) {
-        router?.showDetail(track: track, player: player)
+    func tapOnTheTrack(track: TrackModel.Cell?) {
+        router?.showDetail(track: track)
     }
     
 }

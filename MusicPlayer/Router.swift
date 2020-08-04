@@ -16,7 +16,7 @@ protocol RouterMain {
 
 protocol RouterProtocol: RouterMain {
     func initialViewController()
-    func showDetail(track: TrackModel.Cell?, player: AVPlayer)
+    func showDetail(track: TrackModel.Cell?)
     func popToRoot()
     func setTrack(isNextTrack: Bool, complition: @escaping (TrackModel.Cell?) -> ())
 }
@@ -40,9 +40,9 @@ class Router: RouterProtocol {
         }
     }
     
-    func showDetail(track: TrackModel.Cell?, player: AVPlayer) {
+    func showDetail(track: TrackModel.Cell?) {
         if let navigationController = navigationController {
-            guard let detailViewController = assemblyBuilder?.creatDetailModule(router: self, track: track, player: player) else { return }
+            guard let detailViewController = assemblyBuilder?.creatDetailModule(router: self, track: track) else { return }
             navigationController.present(detailViewController, animated: true, completion: nil)
         }
     }
