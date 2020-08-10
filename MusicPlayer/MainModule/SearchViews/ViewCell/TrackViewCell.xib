@@ -43,6 +43,9 @@
                         <rect key="frame" x="324" y="34" width="16" height="16"/>
                         <color key="tintColor" red="0.90980392160000001" green="0.27058823529999998" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <state key="normal" image="Add"/>
+                        <connections>
+                            <action selector="addInLibrary:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="owz-1g-mrw"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>

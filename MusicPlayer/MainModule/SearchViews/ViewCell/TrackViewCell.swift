@@ -18,7 +18,8 @@ class TrackViewCell: UITableViewCell {
     @IBOutlet weak var collectionNameLabel: UILabel!
     @IBOutlet weak var saveTrackButton: UIButton!
     
-    var presenter: SearchResponseViewPresenterProtocol?
+    var presenter: SearchResponseViewPresenterProtocol!
+    var currentTrack: TrackModel.Track?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,7 +40,23 @@ class TrackViewCell: UITableViewCell {
         
         guard let url = URL(string: viewModel.iconUrlString ?? "") else { return }
         trackImageView.sd_setImage(with: url, completed: nil)
-        
+        currentTrack = viewModel
     }
     
+    @IBAction func addInLibrary(_ sender: Any) {
+        presenter.addInLibrary(track: currentTrack)
+    }
+    
+        func setTracks(viewModel: SavedTrack) {
+        
+        trackNameLabel.text = viewModel.trackName
+        artistNameLabel.text = viewModel.artistName
+        collectionNameLabel.text = viewModel.collectionName
+        
+        guard let url = URL(string: viewModel.iconUrlString ?? "") else { return }
+        trackImageView.sd_setImage(with: url, completed: nil)
+        
+    }
 }
+    
+

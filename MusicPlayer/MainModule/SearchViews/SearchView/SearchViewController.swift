@@ -52,6 +52,7 @@ extension SearchViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TrackCell", for: indexPath) as! TrackViewCell
         guard let cellViewModel = presenter.tracks?[indexPath.row] else { return TrackViewCell()}
         cell.set(viewModel: cellViewModel)
+        cell.presenter = presenter
         
         return cell
     }
@@ -75,7 +76,6 @@ extension SearchViewController: UISearchBarDelegate {
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
             self.presenter.getTracks(searchText: searchText)
         })
-        
     }
 }
 
@@ -94,7 +94,7 @@ extension SearchViewController: SearchResponseViewProtocol {
 
 
 // MARK: - Delegat
-extension SearchViewController{
+extension SearchViewController {
     
     func getTrack(isNextTrack: Bool) -> TrackModel.Track? {
         guard let indexPath = tableView.indexPathForSelectedRow else { return nil }

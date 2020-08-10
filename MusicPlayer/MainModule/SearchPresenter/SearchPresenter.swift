@@ -15,27 +15,31 @@ protocol SearchResponseViewProtocol: class {
 
 protocol SearchResponseViewPresenterProtocol: class {
     init(view: SearchResponseViewProtocol,
+         router: RouterProtocol,
          networkService: NetworkServiceProtocol,
-         router: RouterProtocol)
+         coreDataService: CoreDataServiceProtocol)
     var tracks: [TrackModel.Track]? { get }
     func getTracks(searchText: String)
     func tapOnTheTrack(track: TrackModel.Track?)
+    func addInLibrary(track: TrackModel.Track?)
 }
 
 class SearchPresenter: SearchResponseViewPresenterProtocol {
     
     weak var view: SearchResponseViewProtocol?
-    var trackDetailPresenter: TrackDetailPresenterProtocol!
-    let networkService: NetworkServiceProtocol!
     var router: RouterProtocol?
+    let networkService: NetworkServiceProtocol!
+    let coreDataService: CoreDataServiceProtocol?
     var tracks: [TrackModel.Track]?
     
     required init(view: SearchResponseViewProtocol,
+                  router: RouterProtocol,
                   networkService: NetworkServiceProtocol,
-                  router: RouterProtocol) {
+                  coreDataService: CoreDataServiceProtocol) {
         self.view = view
-        self.networkService = networkService
         self.router = router
+        self.networkService = networkService
+        self.coreDataService = coreDataService
     }
     
     func getTracks(searchText: String) {
@@ -67,6 +71,10 @@ class SearchPresenter: SearchResponseViewPresenterProtocol {
     
     func tapOnTheTrack(track: TrackModel.Track?) {
         router?.showDetail(track: track)
+    }
+    
+    func addInLibrary(track: TrackModel.Track?) {
+        coreDataService?.saveTrack(track: track)
     }
     
 }

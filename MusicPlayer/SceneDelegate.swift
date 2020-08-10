@@ -17,11 +17,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-
-        let tabBar = MainTabBarController()
+        
+        let tabBar = creatModuls()
         
         window?.rootViewController = tabBar
         window?.makeKeyAndVisible()
+    }
+    
+    func creatModuls() -> UITabBarController {
+        let searchNavigationController = UINavigationController()
+        let libraryNavigationController = UINavigationController()
+        let assemblyBuilder = AssemblyModuleBuilder()
+        let tabBarController = UITabBarController()
+        let router = Router(tabBarController: tabBarController,
+                            searchNavigationController: searchNavigationController,
+                            libraryNavigationController: libraryNavigationController,
+                            assemblyBuilder: assemblyBuilder)
+        router.initialViewController()
+        
+        return tabBarController
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

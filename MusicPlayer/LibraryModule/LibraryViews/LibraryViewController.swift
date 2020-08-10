@@ -8,15 +8,16 @@
 
 import UIKit
 
-class LibreryViewController: UIViewController {
+class LibraryViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-
+    
+    var presenter: LibraryViewPresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
         
+        setup()
         
     }
     
@@ -27,32 +28,36 @@ class LibreryViewController: UIViewController {
         
         let nib = UINib(nibName: "TrackViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "TrackCell")
-        
-    }
-    
-    func navcreat() {
-        
+        navigationItem.title = "Library"
     }
 
 }
 
 
 //MARK: - UITableViewDelegate
-extension LibreryViewController: UITableViewDelegate {
-    
+extension LibraryViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
 }
 
 
 //MARK: - UITableViewDataSource
-extension LibreryViewController: UITableViewDataSource {
+extension LibraryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return presenter?.tracks.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TrackCell", for: indexPath) as! TrackViewCell
         cell.saveTrackButton.isHidden = true
+        guard let track = presenter?.tracks[indexPath.row] else { return UITableViewCell()}
+        cell.setTracks(viewModel: track)
         return cell
     }
+}
+
+extension LibraryViewController: LibraryViewProtocol {
+    
 }
