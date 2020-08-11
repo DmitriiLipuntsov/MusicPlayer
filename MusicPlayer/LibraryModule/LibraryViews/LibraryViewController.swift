@@ -23,12 +23,10 @@ class LibraryViewController: UIViewController {
     
     func setup() {
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        
         let nib = UINib(nibName: "TrackViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "TrackCell")
         navigationItem.title = "Library"
+        
     }
 
 }

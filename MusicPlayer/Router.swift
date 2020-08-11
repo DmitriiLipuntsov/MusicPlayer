@@ -12,6 +12,7 @@ import AVKit
 protocol RouterMain {
     var tabBarController: UITabBarController? { get set }
     var searchNavigationController: UINavigationController? { get set }
+    var libraryNavigationController: UINavigationController? { get set }
     var assemblyBuilder: AssemblyBuilderProtocol? { get set }
 }
 

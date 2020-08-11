@@ -19,7 +19,6 @@ protocol LibraryViewPresenterProtocol: class {
          coreDataService: CoreDataServiceProtocol)
     
     var tracks: [SavedTrack] { get }
-    
     func tapOnTheTrack(track: TrackModel.Track?)
     
 }
@@ -37,14 +36,16 @@ class LibraryPresenter: LibraryViewPresenterProtocol {
         self.view = view
         self.router = router
         self.coreDataService = coreDataService
-    }
-    
-    func getTracks() {
-        self.tracks = coreDataService?.tracks ?? []
+        featchTracks()
     }
     
     func tapOnTheTrack(track: TrackModel.Track?) {
         router?.showDetail(track: track)
+    }
+    
+    func featchTracks() {
+        coreDataService?.featchTrack()
+        tracks = coreDataService?.tracks ?? []
     }
     
 }

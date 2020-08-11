@@ -33,7 +33,7 @@
 		7754D1B424A404A900AF5D21 /* TrackControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754D1B324A404A900AF5D21 /* TrackControlView.swift */; };
 		77556D6E24E15D0A001FAE06 /* LibraryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77556D6D24E15D0A001FAE06 /* LibraryPresenter.swift */; };
 		7757D8CB24D1E46200CDE725 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7757D8C924D1E46200CDE725 /* LibraryViewController.swift */; };
-		7757D8CC24D1E46200CDE725 /* LibreryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7757D8CA24D1E46200CDE725 /* LibreryViewController.xib */; };
+		7757D8CC24D1E46200CDE725 /* LibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7757D8CA24D1E46200CDE725 /* LibraryViewController.xib */; };
 		7757D8CF24D58FFF00CDE725 /* CMTime + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7757D8CE24D58FFF00CDE725 /* CMTime + Extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,7 +68,7 @@
 		7754D1B324A404A900AF5D21 /* TrackControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackControlView.swift; sourceTree = "<group>"; };
 		77556D6D24E15D0A001FAE06 /* LibraryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryPresenter.swift; sourceTree = "<group>"; };
 		7757D8C924D1E46200CDE725 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
-		7757D8CA24D1E46200CDE725 /* LibreryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibreryViewController.xib; sourceTree = "<group>"; };
+		7757D8CA24D1E46200CDE725 /* LibraryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryViewController.xib; sourceTree = "<group>"; };
 		7757D8CE24D58FFF00CDE725 /* CMTime + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CMTime + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -236,7 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				7757D8C924D1E46200CDE725 /* LibraryViewController.swift */,
-				7757D8CA24D1E46200CDE725 /* LibreryViewController.xib */,
+				7757D8CA24D1E46200CDE725 /* LibraryViewController.xib */,
 			);
 			path = LibraryViews;
 			sourceTree = "<group>";
@@ -338,7 +338,7 @@
 				7705FF4724862D31007D8663 /* LaunchScreen.storyboard in Resources */,
 				7705FF4424862D31007D8663 /* Assets.xcassets in Resources */,
 				771177D72492552F00B0C36E /* SearchViewController.xib in Resources */,
-				7757D8CC24D1E46200CDE725 /* LibreryViewController.xib in Resources */,
+				7757D8CC24D1E46200CDE725 /* LibraryViewController.xib in Resources */,
 				7751F5FD24D9B255009607CE /* Plan.rtf in Resources */,
 				7705FF4224862D30007D8663 /* Main.storyboard in Resources */,
 			);

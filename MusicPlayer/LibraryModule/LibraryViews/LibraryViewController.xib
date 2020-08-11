@@ -9,7 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LibraryViewController" customModule="MusicPlayer" customModuleProvider="target">
             <connections>
-                <outlet property="tableView" destination="9LA-gU-cZt" id="aOa-QD-ahv"/>
+                <outlet property="tableView" destination="9LA-gU-cZt" id="wZ1-jp-hYR"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,6 +21,10 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9LA-gU-cZt">
                     <rect key="frame" x="0.0" y="95" width="375" height="572"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="dq1-tP-8Lp"/>
+                        <outlet property="delegate" destination="-1" id="9ng-yE-2o5"/>
+                    </connections>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HQG-bH-EoJ">
                     <rect key="frame" x="20" y="20" width="140" height="55"/>
