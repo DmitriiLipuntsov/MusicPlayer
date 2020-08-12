@@ -44,15 +44,15 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.tracks?.count ?? 0
+        return presenter.foundTracks?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "TrackCell", for: indexPath) as! TrackViewCell
-        guard let cellViewModel = presenter.tracks?[indexPath.row] else { return TrackViewCell()}
-        cell.set(viewModel: cellViewModel)
+        guard let cellViewModel = presenter.foundTracks?[indexPath.row] else { return TrackViewCell()}
         cell.presenter = presenter
+        cell.set(viewModel: cellViewModel)
         
         return cell
     }
@@ -63,7 +63,7 @@ extension SearchViewController: UITableViewDataSource {
 extension SearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let track = presenter.tracks?[indexPath.row]
+        let track = presenter.foundTracks?[indexPath.row]
         presenter.tapOnTheTrack(track: track)
     }
 }
@@ -102,18 +102,18 @@ extension SearchViewController {
         var nextIndexPath: IndexPath!
         if isNextTrack {
             nextIndexPath = IndexPath(row: indexPath.row + 1, section: indexPath.section)
-            if nextIndexPath.row == presenter.tracks?.count {
+            if nextIndexPath.row == presenter.foundTracks?.count {
                 nextIndexPath.row = 0
             }
         } else {
             nextIndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
             if nextIndexPath.row == -1 {
-                nextIndexPath.row = (presenter.tracks?.count ?? 0) - 1
+                nextIndexPath.row = (presenter.foundTracks?.count ?? 0) - 1
             }
         }
         
         tableView.selectRow(at: nextIndexPath, animated: true, scrollPosition: .none)
-        let cellViewModel = presenter.tracks?[nextIndexPath.row]
+        let cellViewModel = presenter.foundTracks?[nextIndexPath.row]
         return cellViewModel
     }
 }

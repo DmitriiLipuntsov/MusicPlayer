@@ -18,7 +18,8 @@ protocol SearchResponseViewPresenterProtocol: class {
          router: RouterProtocol,
          networkService: NetworkServiceProtocol,
          coreDataService: CoreDataServiceProtocol)
-    var tracks: [TrackModel.Track]? { get }
+    var foundTracks: [TrackModel.Track]? { get }
+    var savedTracks: [TrackModel.Track]? { get }
     func getTracks(searchText: String)
     func tapOnTheTrack(track: TrackModel.Track?)
     func addInLibrary(track: TrackModel.Track?)
@@ -30,7 +31,8 @@ class SearchPresenter: SearchResponseViewPresenterProtocol {
     var router: RouterProtocol?
     let networkService: NetworkServiceProtocol!
     let coreDataService: CoreDataServiceProtocol?
-    var tracks: [TrackModel.Track]?
+    var foundTracks: [TrackModel.Track]?
+    var savedTracks: [TrackModel.Track]?
     
     required init(view: SearchResponseViewProtocol,
                   router: RouterProtocol,
@@ -40,6 +42,7 @@ class SearchPresenter: SearchResponseViewPresenterProtocol {
         self.router = router
         self.networkService = networkService
         self.coreDataService = coreDataService
+        getSavedTrack()
     }
     
     func getTracks(searchText: String) {
@@ -52,7 +55,7 @@ class SearchPresenter: SearchResponseViewPresenterProtocol {
                     let cells = tracks.results.map { track in
                         self.trackModel(track: track)
                     }
-                    self.tracks = cells
+                    self.foundTracks = cells
                     self.view?.success()
                 case .failure(let error):
                     self.view?.failure(error: error)
@@ -75,6 +78,10 @@ class SearchPresenter: SearchResponseViewPresenterProtocol {
     
     func addInLibrary(track: TrackModel.Track?) {
         coreDataService?.saveTrack(track: track)
+    }
+    
+    func getSavedTrack() {
+        savedTracks = coreDataService?.getConvertedSavedTracks() ?? []
     }
     
 }

@@ -18,7 +18,7 @@ protocol LibraryViewPresenterProtocol: class {
          router: RouterProtocol,
          coreDataService: CoreDataServiceProtocol)
     
-    var tracks: [SavedTrack] { get }
+    var tracks: [TrackModel.Track] { get }
     func tapOnTheTrack(track: TrackModel.Track?)
     
 }
@@ -28,7 +28,7 @@ class LibraryPresenter: LibraryViewPresenterProtocol {
     var view: LibraryViewProtocol?
     var router: RouterProtocol?
     var coreDataService: CoreDataServiceProtocol?
-    var tracks: [SavedTrack] = []
+    var tracks: [TrackModel.Track] = []
     
     required init(view: LibraryViewProtocol,
                   router: RouterProtocol,
@@ -44,8 +44,9 @@ class LibraryPresenter: LibraryViewPresenterProtocol {
     }
     
     func featchTracks() {
-        coreDataService?.featchTrack()
-        tracks = coreDataService?.tracks ?? []
+        tracks = coreDataService?.getConvertedSavedTracks() ?? []
     }
+    
+    
     
 }

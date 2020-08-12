@@ -3,6 +3,53 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <scenes/>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="z6x-Xb-hOc">
+            <objects>
+                <viewController id="yUP-PN-50N" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dhk-s2-GRp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aq7-Rx-reZ">
+                                <rect key="frame" x="26" y="215" width="140" height="55"/>
+                                <color key="backgroundColor" red="0.92156862750000001" green="0.91764705879999997" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="QRG-fm-JSH"/>
+                                    <constraint firstAttribute="height" constant="55" id="v9X-Or-yGs"/>
+                                </constraints>
+                                <color key="tintColor" red="0.90980392160000001" green="0.27058823529999998" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" image="play.fill" catalog="system"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHM-hF-kVG">
+                                <rect key="frame" x="222" y="215" width="143" height="55"/>
+                                <color key="backgroundColor" red="0.92156862750000001" green="0.91764705879999997" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="Qg9-MU-lgn"/>
+                                    <constraint firstAttribute="width" constant="143" id="hLU-lZ-u7y"/>
+                                </constraints>
+                                <color key="tintColor" red="0.90980392160000001" green="0.27058823529999998" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" image="arrow.2.circlepath" catalog="system"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="gHM-hF-kVG" firstAttribute="leading" secondItem="aq7-Rx-reZ" secondAttribute="trailing" constant="56" id="uXr-Mo-akZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ffx-hM-los"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tzz-FH-9Be" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-281" y="-21"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="arrow.2.circlepath" catalog="system" width="64" height="50"/>
+        <image name="play.fill" catalog="system" width="58" height="64"/>
+    </resources>
 </document>

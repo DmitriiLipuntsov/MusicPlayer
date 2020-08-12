@@ -13,12 +13,17 @@ protocol CoreDataServiceProtocol {
     var tracks: [SavedTrack] { get }
     func saveTrack(track: TrackModel.Track?)
     func featchTrack()
+    func getConvertedSavedTracks() -> [TrackModel.Track]
 }
 
 class CoreDataStorage: CoreDataServiceProtocol {
     
     var tracks: [SavedTrack] = []
     let manageContext = (UIApplication.shared.delegate as! AppDelegate).persistentConteiner.viewContext
+    
+    init() {
+        featchTrack()
+    }
     
     func saveTrack(track: TrackModel.Track?) {
         
@@ -50,5 +55,19 @@ class CoreDataStorage: CoreDataServiceProtocol {
         catch {
             print(error.localizedDescription)
         }
+    }
+    
+    func getConvertedSavedTracks() -> [TrackModel.Track] {
+        var tracks = [TrackModel.Track]()
+        self.tracks.forEach({ track in
+            let finalTrack = TrackModel.Track(
+                trackName: track.trackName ?? "",
+                collectionName: track.collectionName,
+                artistName: track.artistName ?? "",
+                iconUrlString: track.iconUrlString,
+                previewUrl: track.previewUrl)
+            tracks.append(finalTrack)
+        })
+        return tracks
     }
 }

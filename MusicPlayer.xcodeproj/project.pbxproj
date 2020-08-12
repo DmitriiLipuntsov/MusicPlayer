@@ -119,9 +119,9 @@
 				7705FF3C24862D30007D8663 /* SceneDelegate.swift */,
 				7754D19F24A0CE4000AF5D21 /* AssemblyModuleBuilder.swift */,
 				7754D1A124A0CE9C00AF5D21 /* Router.swift */,
+				771177D02492527E00B0C36E /* SearchModule */,
 				7757D8C824D1E3A000CDE725 /* LibraryModule */,
 				7754D1A624A2645100AF5D21 /* DitailModule */,
-				771177D02492527E00B0C36E /* MainModule */,
 				771177C524924F3800B0C36E /* Services */,
 				7757D8CD24D58FE200CDE725 /* Helpers */,
 				7705FF4024862D30007D8663 /* Main.storyboard */,
@@ -160,14 +160,14 @@
 			path = SearchViews;
 			sourceTree = "<group>";
 		};
-		771177D02492527E00B0C36E /* MainModule */ = {
+		771177D02492527E00B0C36E /* SearchModule */ = {
 			isa = PBXGroup;
 			children = (
 				771177C624924F7600B0C36E /* Model */,
 				771177CB2492516000B0C36E /* SearchViews */,
 				771177D12492539800B0C36E /* SearchPresenter */,
 			);
-			path = MainModule;
+			path = SearchModule;
 			sourceTree = "<group>";
 		};
 		771177D12492539800B0C36E /* SearchPresenter */ = {
