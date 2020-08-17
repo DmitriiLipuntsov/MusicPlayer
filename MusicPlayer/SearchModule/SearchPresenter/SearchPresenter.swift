@@ -21,7 +21,7 @@ protocol SearchResponseViewPresenterProtocol: class {
     var foundTracks: [TrackModel.Track]? { get }
     var savedTracks: [TrackModel.Track]? { get }
     func getTracks(searchText: String)
-    func tapOnTheTrack(track: TrackModel.Track?)
+    func tapOnTheTrack(tracks: [TrackModel.Track], index: Int)
     func addInLibrary(track: TrackModel.Track?)
 }
 
@@ -72,8 +72,8 @@ class SearchPresenter: SearchResponseViewPresenterProtocol {
                                     previewUrl: track.previewUrl)
     }
     
-    func tapOnTheTrack(track: TrackModel.Track?) {
-        router?.showDetail(track: track)
+    func tapOnTheTrack(tracks: [TrackModel.Track], index: Int) {
+        router?.showDetail(tracks: tracks, index: index)
     }
     
     func addInLibrary(track: TrackModel.Track?) {

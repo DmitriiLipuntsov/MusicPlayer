@@ -16,9 +16,11 @@ protocol TrackDetailPresenterProtocol {
     init(view: TrackDetailViewProtocol,
          networkService: NetworkServiceProtocol,
          router: RouterProtocol,
-         track: TrackModel.Track?
+         tracks: [TrackModel.Track],
+         index: Int
     )
-    var track: TrackModel.Track? { get }
+    var tracks: [TrackModel.Track] { get }
+    var index: Int { get }
     func setTrack()
     func popToRoot()
     func nextTrack(isNextTrack: Bool)
@@ -28,19 +30,25 @@ class TrackDetailPresenter: TrackDetailPresenterProtocol {
     
     weak var view: TrackDetailViewProtocol?
     var networkService: NetworkServiceProtocol!
-    var track: TrackModel.Track?
+    var tracks: [TrackModel.Track]
+    var index: Int
     var router: RouterProtocol?
-
+    
     
     required init(view: TrackDetailViewProtocol,
-         networkService: NetworkServiceProtocol,
-         router: RouterProtocol,
-         track: TrackModel.Track?
+                  networkService: NetworkServiceProtocol,
+                  router: RouterProtocol,
+                  tracks: [TrackModel.Track],
+                  index: Int
     ) {
         self.view = view
         self.networkService = networkService
-        self.track = track
+        self.tracks = tracks
         self.router = router
+        self.index = index
+        setTrack()
+        print("Index -" , index)
+        print("Count -" , tracks.count)
     }
     
     func popToRoot() {
@@ -49,14 +57,24 @@ class TrackDetailPresenter: TrackDetailPresenterProtocol {
     }
     
     public func setTrack() {
+        let track = tracks[index]
         view?.setTrack(track: track)
     }
     
     func nextTrack(isNextTrack: Bool) {
-        router?.setTrack(isNextTrack: isNextTrack) { [weak self] newTrack in
-            guard let self = self else { return }
-            self.view?.setTrack(track: newTrack)
+                if isNextTrack {
+                index += 1
+                if tracks.count - 1 < index {
+                    index = 0
+                }
+            } else {
+                index -= 1
+                if index == -1 {
+                    index = tracks.count - 1
+                }
+            }
+            
+            view?.setTrack(track: tracks[index])
         }
     }
-    
-}
+

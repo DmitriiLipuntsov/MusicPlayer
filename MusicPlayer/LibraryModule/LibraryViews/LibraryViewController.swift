@@ -35,8 +35,8 @@ class LibraryViewController: UIViewController {
 //MARK: - UITableViewDelegate
 extension LibraryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let track = presenter?.tracks[indexPath.row]
-        presenter?.tapOnTheTrack(track: track)
+        guard let tracks = presenter?.tracks else { return }
+        presenter?.tapOnTheTrack(tracks: tracks, index: indexPath.row)
     }
 }
 
@@ -50,7 +50,6 @@ extension LibraryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TrackCell", for: indexPath) as! TrackViewCell
-        cell.saveTrackButton.isHidden = true
         guard let track = presenter?.tracks[indexPath.row] else { return UITableViewCell()}
         cell.set(viewModel: track)
         return cell

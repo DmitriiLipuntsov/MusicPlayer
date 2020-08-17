@@ -13,6 +13,7 @@ class TrackDetailViewController: UIViewController {
     
     var presenter: TrackDetailPresenterProtocol?
     private var trackDetailView = TrackDetailView()
+    var tracks: [TrackModel.Track]?
     var player: AVPlayer = {
         let avPlayer = AVPlayer()
         avPlayer.automaticallyWaitsToMinimizeStalling = false
@@ -24,7 +25,6 @@ class TrackDetailViewController: UIViewController {
         view.backgroundColor = .white
         navigationController?.isNavigationBarHidden = true
         loadAllView()
-        setTrack(track: presenter?.track)
         creatButtonsActions()
         creatSlidersAction()
     }
@@ -143,7 +143,8 @@ extension TrackDetailViewController: TrackDetailViewProtocol {
         let string600 = track?.iconUrlString?.replacingOccurrences(of: "100x100", with: "600x600")
         guard let url = URL(string: string600 ?? "") else { return }
         trackDetailView.trackImageView.sd_setImage(with: url)
-        playTrack(previewUrl: track?.previewUrl)
+        guard let previewUrl = track?.previewUrl else { return }
+        playTrack(previewUrl: previewUrl)
         observePlayerCurrantTime()
         trackDetailView.trackControlView.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
     }

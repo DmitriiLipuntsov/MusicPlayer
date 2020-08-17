@@ -18,13 +18,12 @@ protocol RouterMain {
 
 protocol RouterProtocol: RouterMain {
     func initialViewController()
-    func showDetail(track: TrackModel.Track?)
+    func showDetail(tracks: [TrackModel.Track], index: Int)
     func popToRoot()
-    func setTrack(isNextTrack: Bool, complition: @escaping (TrackModel.Track?) -> ())
 }
 
 class Router: RouterProtocol {
-    
+
     var tabBarController: UITabBarController?
     var searchNavigationController: UINavigationController?
     var libraryNavigationController: UINavigationController?
@@ -65,7 +64,6 @@ class Router: RouterProtocol {
             guard let libraryVieweController = assemblyBuilder?.creatLibraryModule(router: self) else { return }
             searchNavigationController.viewControllers = [mainViewController]
             libraryNavigationController.viewControllers = [libraryVieweController]
-            searchVC = mainViewController as? SearchViewController
             tabBarController.setViewControllers(
                 [searchNavigationController, libraryNavigationController],
                 animated: true
@@ -74,22 +72,17 @@ class Router: RouterProtocol {
         
     }
     
-    func showDetail(track: TrackModel.Track?) {
+    func showDetail(tracks: [TrackModel.Track], index: Int) {
         if let navigationController = searchNavigationController {
-            guard let detailViewController = assemblyBuilder?.creatDetailModule(router: self, track: track) else { return }
-            navigationController.present(detailViewController, animated: true, completion: nil)
+            guard let detailViewController = assemblyBuilder?.creatDetailModule(router: self, tracks: tracks, index: index) else { return }
+            navigationController.present(detailViewController, animated: true)
         }
     }
     
     func popToRoot() {
         if let navigationController = searchNavigationController {
             navigationController.popToRootViewController(animated: true)
-            
         }
-    }
-    
-    func setTrack(isNextTrack: Bool, complition: @escaping (TrackModel.Track?) -> ()) {
-        complition(searchVC?.getTrack(isNextTrack: isNextTrack))
     }
     
 }
