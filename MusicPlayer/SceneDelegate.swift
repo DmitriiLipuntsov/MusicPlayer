@@ -29,7 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let searchNavigationController = UINavigationController()
         let libraryNavigationController = UINavigationController()
         let assemblyBuilder = AssemblyModuleBuilder()
-        let tabBarController = UITabBarController()
+        let tabBarController = TabBarController()
         let router = Router(tabBarController: tabBarController,
                             searchNavigationController: searchNavigationController,
                             libraryNavigationController: libraryNavigationController,

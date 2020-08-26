@@ -21,7 +21,7 @@
 		771177F324926B4500B0C36E /* TrackViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771177F124926B4500B0C36E /* TrackViewCell.swift */; };
 		771177F424926B4500B0C36E /* TrackViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 771177F224926B4500B0C36E /* TrackViewCell.xib */; };
 		77498A8724DD4DC400ED5E97 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77498A8624DD4DC400ED5E97 /* CoreDataService.swift */; };
-		7751F5FD24D9B255009607CE /* Plan.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 7751F5FC24D9B255009607CE /* Plan.rtf */; };
+		7751F5FD24D9B255009607CE /* ToDo.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 7751F5FC24D9B255009607CE /* ToDo.rtf */; };
 		7751F62324D9D754009607CE /* CoreDataTrack.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7751F62124D9D754009607CE /* CoreDataTrack.xcdatamodeld */; };
 		7754D1A024A0CE4000AF5D21 /* AssemblyModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754D19F24A0CE4000AF5D21 /* AssemblyModuleBuilder.swift */; };
 		7754D1A224A0CE9C00AF5D21 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754D1A124A0CE9C00AF5D21 /* Router.swift */; };
@@ -32,6 +32,9 @@
 		7754D1B224A26B9F00AF5D21 /* TrackDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754D1B124A26B9F00AF5D21 /* TrackDetailView.swift */; };
 		7754D1B424A404A900AF5D21 /* TrackControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754D1B324A404A900AF5D21 /* TrackControlView.swift */; };
 		77556D6E24E15D0A001FAE06 /* LibraryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77556D6D24E15D0A001FAE06 /* LibraryPresenter.swift */; };
+		77556D7A24EC348F001FAE06 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77556D7924EC348F001FAE06 /* TabBarController.swift */; };
+		77556D7C24EC40C0001FAE06 /* TabBarTrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77556D7B24EC40C0001FAE06 /* TabBarTrackView.swift */; };
+		77556DA324F5DA28001FAE06 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77556DA224F5DA28001FAE06 /* Player.swift */; };
 		7757D8CB24D1E46200CDE725 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7757D8C924D1E46200CDE725 /* LibraryViewController.swift */; };
 		7757D8CC24D1E46200CDE725 /* LibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7757D8CA24D1E46200CDE725 /* LibraryViewController.xib */; };
 		7757D8CF24D58FFF00CDE725 /* CMTime + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7757D8CE24D58FFF00CDE725 /* CMTime + Extension.swift */; };
@@ -56,7 +59,7 @@
 		771177F124926B4500B0C36E /* TrackViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewCell.swift; sourceTree = "<group>"; };
 		771177F224926B4500B0C36E /* TrackViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackViewCell.xib; sourceTree = "<group>"; };
 		77498A8624DD4DC400ED5E97 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
-		7751F5FC24D9B255009607CE /* Plan.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Plan.rtf; sourceTree = "<group>"; };
+		7751F5FC24D9B255009607CE /* ToDo.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ToDo.rtf; sourceTree = "<group>"; };
 		7751F62224D9D754009607CE /* TrackCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TrackCoreData.xcdatamodel; sourceTree = "<group>"; };
 		7754D19F24A0CE4000AF5D21 /* AssemblyModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyModuleBuilder.swift; sourceTree = "<group>"; };
 		7754D1A124A0CE9C00AF5D21 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -67,6 +70,9 @@
 		7754D1B124A26B9F00AF5D21 /* TrackDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDetailView.swift; sourceTree = "<group>"; };
 		7754D1B324A404A900AF5D21 /* TrackControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackControlView.swift; sourceTree = "<group>"; };
 		77556D6D24E15D0A001FAE06 /* LibraryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryPresenter.swift; sourceTree = "<group>"; };
+		77556D7924EC348F001FAE06 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		77556D7B24EC40C0001FAE06 /* TabBarTrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarTrackView.swift; sourceTree = "<group>"; };
+		77556DA224F5DA28001FAE06 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		7757D8C924D1E46200CDE725 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		7757D8CA24D1E46200CDE725 /* LibraryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryViewController.xib; sourceTree = "<group>"; };
 		7757D8CE24D58FFF00CDE725 /* CMTime + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CMTime + Extension.swift"; sourceTree = "<group>"; };
@@ -96,7 +102,7 @@
 		7705FF2E24862D30007D8663 = {
 			isa = PBXGroup;
 			children = (
-				7751F5FC24D9B255009607CE /* Plan.rtf */,
+				7751F5FC24D9B255009607CE /* ToDo.rtf */,
 				7705FF3924862D30007D8663 /* MusicPlayer */,
 				7705FF3824862D30007D8663 /* Products */,
 				04080484B052048D20723B67 /* Pods */,
@@ -119,6 +125,9 @@
 				7705FF3C24862D30007D8663 /* SceneDelegate.swift */,
 				7754D19F24A0CE4000AF5D21 /* AssemblyModuleBuilder.swift */,
 				7754D1A124A0CE9C00AF5D21 /* Router.swift */,
+				77556D7924EC348F001FAE06 /* TabBarController.swift */,
+				77556DA224F5DA28001FAE06 /* Player.swift */,
+				77556D7D24EC40C5001FAE06 /* TabBarTrackView */,
 				771177D02492527E00B0C36E /* SearchModule */,
 				7757D8C824D1E3A000CDE725 /* LibraryModule */,
 				7754D1A624A2645100AF5D21 /* DitailModule */,
@@ -249,6 +258,14 @@
 			path = LibraryPresenter;
 			sourceTree = "<group>";
 		};
+		77556D7D24EC40C5001FAE06 /* TabBarTrackView */ = {
+			isa = PBXGroup;
+			children = (
+				77556D7B24EC40C0001FAE06 /* TabBarTrackView.swift */,
+			);
+			path = TabBarTrackView;
+			sourceTree = "<group>";
+		};
 		7757D8C824D1E3A000CDE725 /* LibraryModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -339,7 +356,7 @@
 				7705FF4424862D31007D8663 /* Assets.xcassets in Resources */,
 				771177D72492552F00B0C36E /* SearchViewController.xib in Resources */,
 				7757D8CC24D1E46200CDE725 /* LibraryViewController.xib in Resources */,
-				7751F5FD24D9B255009607CE /* Plan.rtf in Resources */,
+				7751F5FD24D9B255009607CE /* ToDo.rtf in Resources */,
 				7705FF4224862D30007D8663 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -397,8 +414,10 @@
 				771177D3249253AE00B0C36E /* SearchPresenter.swift in Sources */,
 				7754D1AA24A2655800AF5D21 /* TrackDetailViewController.swift in Sources */,
 				7754D1B224A26B9F00AF5D21 /* TrackDetailView.swift in Sources */,
+				77556DA324F5DA28001FAE06 /* Player.swift in Sources */,
 				7705FFD824923E78007D8663 /* NetworkService.swift in Sources */,
 				7751F62324D9D754009607CE /* CoreDataTrack.xcdatamodeld in Sources */,
+				77556D7C24EC40C0001FAE06 /* TabBarTrackView.swift in Sources */,
 				7754D1A424A104A200AF5D21 /* TrackModel.swift in Sources */,
 				7757D8CF24D58FFF00CDE725 /* CMTime + Extension.swift in Sources */,
 				7754D1AC24A2670300AF5D21 /* TrackDetailPresenter.swift in Sources */,
@@ -411,6 +430,7 @@
 				7705FF3B24862D30007D8663 /* AppDelegate.swift in Sources */,
 				771177F324926B4500B0C36E /* TrackViewCell.swift in Sources */,
 				7754D1B424A404A900AF5D21 /* TrackControlView.swift in Sources */,
+				77556D7A24EC348F001FAE06 /* TabBarController.swift in Sources */,
 				7757D8CB24D1E46200CDE725 /* LibraryViewController.swift in Sources */,
 				7705FF3D24862D30007D8663 /* SceneDelegate.swift in Sources */,
 			);

@@ -33,5 +33,4 @@ class TrackDetailView: UIView {
         volumeSlider.value = 1
         
     }
-    
 }

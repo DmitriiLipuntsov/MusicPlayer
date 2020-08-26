@@ -22,9 +22,10 @@ class TrackControlView: UIView {
     }
     
     func makePreviousTrackButton() -> UIButton {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         addSubview(button)
+        button.tintColor = .black
         
         button.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).isActive = true
         button.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
@@ -35,26 +36,28 @@ class TrackControlView: UIView {
     }
     
     func makePlayPouseButton() -> UIButton {
-        let button = UIButton()
+        let button = UIButton(type: .system)
+        button.tintColor = .black
         
         button.translatesAutoresizingMaskIntoConstraints = false
         addSubview(button)
         
-        button.leftAnchor.constraint(equalTo: previousTrackButton.rightAnchor, constant: 0).isActive = true
         button.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
         button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
         button.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1/3).isActive = true
+        button.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         
         return button
     }
     
     func makeNextTrackButton() -> UIButton {
-        let button = UIButton()
+        let button = UIButton(type: .system)
+        button.tintColor = .black
         
         button.translatesAutoresizingMaskIntoConstraints = false
         addSubview(button)
         
-        button.leftAnchor.constraint(equalTo: playPauseButton.rightAnchor, constant: 0).isActive = true
+        button.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1/3).isActive = true
         button.rightAnchor.constraint(equalTo: rightAnchor, constant: 0).isActive = true
         button.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
         button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true

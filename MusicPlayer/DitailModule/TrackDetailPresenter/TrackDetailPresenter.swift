@@ -47,13 +47,10 @@ class TrackDetailPresenter: TrackDetailPresenterProtocol {
         self.router = router
         self.index = index
         setTrack()
-        print("Index -" , index)
-        print("Count -" , tracks.count)
     }
     
     func popToRoot() {
-        router?.popToRoot()
-        
+        router?.popToRoot(tracks: tracks, index: index)
     }
     
     public func setTrack() {

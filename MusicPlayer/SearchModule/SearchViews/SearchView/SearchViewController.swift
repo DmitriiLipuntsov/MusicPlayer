@@ -20,13 +20,17 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         setup()
         setupSearchBar()
-        searchBar(UISearchController().searchBar, textDidChange: "Red")
+        searchBar(UISearchController().searchBar, textDidChange: "Billie")
     }
     
     func setup() {
         let nib = UINib(nibName: "TrackViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "TrackCell")
         navigationItem.title = "Search"
+        
+//        navigationController?.navigationBar.prefersLargeTitles = true
+//        navigationController?.tabBarItem.image = UIImage(named: "search")
+//        navigationController?.tabBarItem.title = "Search"
     }
     
     private func setupSearchBar() {

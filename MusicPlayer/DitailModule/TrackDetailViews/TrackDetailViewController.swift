@@ -14,11 +14,7 @@ class TrackDetailViewController: UIViewController {
     var presenter: TrackDetailPresenterProtocol?
     private var trackDetailView = TrackDetailView()
     var tracks: [TrackModel.Track]?
-    var player: AVPlayer = {
-        let avPlayer = AVPlayer()
-        avPlayer.automaticallyWaitsToMinimizeStalling = false
-        return avPlayer
-    }()
+    var player = Player.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,13 +36,13 @@ class TrackDetailViewController: UIViewController {
         
     }
     
-    func playTrack(previewUrl: String?) {
-        guard let url = URL(string: previewUrl ?? "") else { return }
-        let playerItem = AVPlayerItem(url: url)
-        player.replaceCurrentItem(with: playerItem)
-        player.play()
-
-    }
+//    func playTrack(previewUrl: String?) {
+//        guard let url = URL(string: previewUrl ?? "") else { return }
+//        let playerItem = AVPlayerItem(url: url)
+//        player.replaceCurrentItem(with: playerItem)
+//        player.play()
+//
+//    }
     
     //MARK: - ButtonsActions
     
@@ -79,7 +75,8 @@ class TrackDetailViewController: UIViewController {
     @objc func dragDownButtonPressed() {
         
         dismiss(animated: true, completion: nil)
-        navigationController?.isNavigationBarHidden = false//
+        navigationController?.isNavigationBarHidden = false
+        presenter?.popToRoot()
         
     }
     
@@ -90,11 +87,11 @@ class TrackDetailViewController: UIViewController {
     }
     
     @objc func playPouseButtonPressed() {
-        if player.timeControlStatus == .paused {
-            player.play()
+        if player.avPlayer.timeControlStatus == .paused {
+            player.avPlayer.play()
             trackDetailView.trackControlView.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         } else {
-            player.pause()
+            player.avPlayer.pause()
             trackDetailView.trackControlView.playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
         }
     }
@@ -121,16 +118,16 @@ class TrackDetailViewController: UIViewController {
     }
     
     @objc func handleVolumeSlider() {
-        player.volume = trackDetailView.volumeSlider.value
+        player.avPlayer.volume = trackDetailView.volumeSlider.value
     }
     
     @objc func handelCurrentTimerSlider() {
         let percentage = trackDetailView.currentTimeSlider.value
-        guard let duration = player.currentItem?.duration else { return }
+        guard let duration = player.avPlayer.currentItem?.duration else { return }
         let durationInSeconds = CMTimeGetSeconds(duration)
         let seekTimeInSeconds = Float64(percentage) * durationInSeconds
         let seekTime = CMTimeMakeWithSeconds(seekTimeInSeconds, preferredTimescale: 1)
-        player.seek(to: seekTime)
+        player.avPlayer.seek(to: seekTime)
     }
     
 }
@@ -144,16 +141,17 @@ extension TrackDetailViewController: TrackDetailViewProtocol {
         guard let url = URL(string: string600 ?? "") else { return }
         trackDetailView.trackImageView.sd_setImage(with: url)
         guard let previewUrl = track?.previewUrl else { return }
-        playTrack(previewUrl: previewUrl)
+        player.playTrack(previewUrl: previewUrl)
         observePlayerCurrantTime()
         trackDetailView.trackControlView.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
     }
     
     func observePlayerCurrantTime() {
         let interval = CMTime(value: 1, timescale: 2)
-        player.addPeriodicTimeObserver(forInterval: interval, queue: nil, using: { [weak self] (time) in
+        player.avPlayer.addPeriodicTimeObserver(forInterval: interval, queue: nil, using: { [weak self] (time) in
             guard let self = self else { return }
-            let durationTime = self.player.currentItem?.duration
+            self.trackDetailView.currentTimeLabel.text = time.toDisplayString()
+            let durationTime = self.player.avPlayer.currentItem?.duration
             let currentDurationText = ((durationTime ?? CMTimeMake(value: 1, timescale: 1)) - time).toDisplayString()
             self.trackDetailView.durationLabel.text = "-\(currentDurationText)"
             self.updateCurrentTimeSlider()
@@ -161,8 +159,8 @@ extension TrackDetailViewController: TrackDetailViewProtocol {
     }
     
     func updateCurrentTimeSlider() {
-        let currentTimeSeconds = CMTimeGetSeconds(player.currentTime())
-        let durationSeconds = CMTimeGetSeconds(player.currentItem?.duration ?? CMTimeMake(value: 1, timescale: 1))
+        let currentTimeSeconds = CMTimeGetSeconds(player.avPlayer.currentTime())
+        let durationSeconds = CMTimeGetSeconds(player.avPlayer.currentItem?.duration ?? CMTimeMake(value: 1, timescale: 1))
         let percentage = currentTimeSeconds / durationSeconds
         self.trackDetailView.currentTimeSlider.value = Float(percentage)
     }

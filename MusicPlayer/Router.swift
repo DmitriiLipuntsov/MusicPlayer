@@ -7,10 +7,9 @@
 //
 
 import UIKit
-import AVKit
 
 protocol RouterMain {
-    var tabBarController: UITabBarController? { get set }
+    var tabBarController: TabBarController? { get set }
     var searchNavigationController: UINavigationController? { get set }
     var libraryNavigationController: UINavigationController? { get set }
     var assemblyBuilder: AssemblyBuilderProtocol? { get set }
@@ -19,18 +18,18 @@ protocol RouterMain {
 protocol RouterProtocol: RouterMain {
     func initialViewController()
     func showDetail(tracks: [TrackModel.Track], index: Int)
-    func popToRoot()
+    func popToRoot(tracks: [TrackModel.Track], index: Int)
 }
 
 class Router: RouterProtocol {
 
-    var tabBarController: UITabBarController?
+    var tabBarController: TabBarController?
     var searchNavigationController: UINavigationController?
     var libraryNavigationController: UINavigationController?
     var assemblyBuilder: AssemblyBuilderProtocol?
     var searchVC: SearchViewController?
     
-    init(tabBarController: UITabBarController,
+    init(tabBarController: TabBarController,
          searchNavigationController: UINavigationController,
          libraryNavigationController: UINavigationController,
          assemblyBuilder: AssemblyBuilderProtocol) {
@@ -40,7 +39,6 @@ class Router: RouterProtocol {
         self.assemblyBuilder = assemblyBuilder
         setupSearchNavigationController()
         setupLibraryNavigationController()
-        tabBarController.tabBar.tintColor = #colorLiteral(red: 0.9889323115, green: 0.1831878126, blue: 0.3349292278, alpha: 1)
     }
     
     func setupSearchNavigationController() {
@@ -79,10 +77,14 @@ class Router: RouterProtocol {
         }
     }
     
-    func popToRoot() {
-        if let navigationController = searchNavigationController {
-            navigationController.popToRootViewController(animated: true)
-        }
+    func popToRoot(tracks: [TrackModel.Track], index: Int) {
+//        if let navigationController = searchNavigationController {
+//            navigationController.popToRootViewController(animated: true)
+//
+//        }
+        tabBarController?.tracks = tracks
+        tabBarController?.index = index
+        tabBarController?.setupTrack()
     }
     
 }
