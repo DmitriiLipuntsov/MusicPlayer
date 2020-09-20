@@ -8,8 +8,10 @@
 
 import Foundation
 
+//MARK: - Protocol
 protocol LibraryViewProtocol: class {
-    
+    func success()
+    func failure(error: Error)
 }
 
 protocol LibraryViewPresenterProtocol: class {
@@ -23,6 +25,7 @@ protocol LibraryViewPresenterProtocol: class {
     
 }
 
+//MARK: - Class
 class LibraryPresenter: LibraryViewPresenterProtocol {
     
     var view: LibraryViewProtocol?
@@ -36,6 +39,7 @@ class LibraryPresenter: LibraryViewPresenterProtocol {
         self.view = view
         self.router = router
         self.coreDataService = coreDataService
+        self.coreDataService?.delegate = self
         featchTracks()
     }
     
@@ -44,9 +48,25 @@ class LibraryPresenter: LibraryViewPresenterProtocol {
     }
     
     func featchTracks() {
-        tracks = coreDataService?.getConvertedSavedTracks() ?? []
+        coreDataService?.featchTrack(complition: { [weak self] result in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let tracks):
+                    self.tracks = tracks
+                    self.view?.success()
+                case .failure(let error):
+                    self.view?.failure(error: error)
+                }
+            }
+        })
     }
-    
-    
-    
+}
+
+//MARK: - CoreDataServiceDelegate
+extension LibraryPresenter: CoreDataServiceDelegate {
+    func update() {
+        featchTracks()
+        view?.success()
+    }
 }

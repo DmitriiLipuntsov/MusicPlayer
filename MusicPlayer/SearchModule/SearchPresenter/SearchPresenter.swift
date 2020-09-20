@@ -81,7 +81,17 @@ class SearchPresenter: SearchResponseViewPresenterProtocol {
     }
     
     func getSavedTrack() {
-        savedTracks = coreDataService?.getConvertedSavedTracks() ?? []
+        coreDataService?.featchTrack(complition: { [weak self] result in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let tracks):
+                    self.savedTracks = tracks
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        })
     }
     
 }

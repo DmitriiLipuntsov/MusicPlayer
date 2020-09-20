@@ -9,57 +9,58 @@
 import UIKit
 import CoreData
 
+protocol CoreDataServiceDelegate {
+    func update()
+}
+
 protocol CoreDataServiceProtocol {
-    var tracks: [SavedTrack] { get }
+    var delegate: CoreDataServiceDelegate? { get set }
     func saveTrack(track: TrackModel.Track?)
-    func featchTrack()
-    func getConvertedSavedTracks() -> [TrackModel.Track]
+    func featchTrack(complition: @escaping (Result<[TrackModel.Track], Error>) -> Void)
 }
 
 class CoreDataStorage: CoreDataServiceProtocol {
+
+    private let manageContext = (UIApplication.shared.delegate as! AppDelegate).persistentConteiner.viewContext
     
-    var tracks: [SavedTrack] = []
-    let manageContext = (UIApplication.shared.delegate as! AppDelegate).persistentConteiner.viewContext
-    
-    init() {
-        featchTrack()
-    }
+    var delegate: CoreDataServiceDelegate?
     
     func saveTrack(track: TrackModel.Track?) {
         
         guard let entity = NSEntityDescription.entity(forEntityName: "SavedTrack", in: manageContext) else { return }
-        let CDTrack = NSManagedObject(entity: entity, insertInto: manageContext) as! SavedTrack
+        let savedTrack = NSManagedObject(entity: entity, insertInto: manageContext) as! SavedTrack
         
-        CDTrack.artistName = track?.artistName
-        CDTrack.collectionName = track?.collectionName
-        CDTrack.iconUrlString = track?.iconUrlString
-        CDTrack.trackName = track?.trackName
-        CDTrack.previewUrl = track?.previewUrl
+        savedTrack.artistName = track?.artistName
+        savedTrack.collectionName = track?.collectionName
+        savedTrack.iconUrlString = track?.iconUrlString
+        savedTrack.trackName = track?.trackName
+        savedTrack.previewUrl = track?.previewUrl
         
             
         do {
             try manageContext.save()
-            tracks.append(CDTrack)
+            delegate?.update()
         }
         catch {
             print(error.localizedDescription)
         }
-        
     }
     
-    func featchTrack() {
+    func featchTrack(complition: @escaping (Result<[TrackModel.Track], Error>) -> Void) {
         let featchRequest: NSFetchRequest<SavedTrack> = SavedTrack.fetchRequest()
         do {
-            tracks = try manageContext.fetch(featchRequest)
+            let savedTrack = try manageContext.fetch(featchRequest)
+            let tracks = getConvertedSavedTracks(savedTrack: savedTrack)
+            complition(.success(tracks))
         }
         catch {
             print(error.localizedDescription)
         }
     }
     
-    func getConvertedSavedTracks() -> [TrackModel.Track] {
+    private func getConvertedSavedTracks(savedTrack: [SavedTrack]) -> [TrackModel.Track] {
         var tracks = [TrackModel.Track]()
-        self.tracks.forEach({ track in
+        savedTrack.forEach({ track in
             let finalTrack = TrackModel.Track(
                 trackName: track.trackName ?? "",
                 collectionName: track.collectionName,
@@ -71,3 +72,4 @@ class CoreDataStorage: CoreDataServiceProtocol {
         return tracks
     }
 }
+

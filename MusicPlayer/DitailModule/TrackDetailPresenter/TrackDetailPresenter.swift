@@ -14,7 +14,6 @@ protocol TrackDetailViewProtocol: class {
 
 protocol TrackDetailPresenterProtocol {
     init(view: TrackDetailViewProtocol,
-         networkService: NetworkServiceProtocol,
          router: RouterProtocol,
          tracks: [TrackModel.Track],
          index: Int
@@ -29,20 +28,17 @@ protocol TrackDetailPresenterProtocol {
 class TrackDetailPresenter: TrackDetailPresenterProtocol {
     
     weak var view: TrackDetailViewProtocol?
-    var networkService: NetworkServiceProtocol!
     var tracks: [TrackModel.Track]
     var index: Int
     var router: RouterProtocol?
     
     
     required init(view: TrackDetailViewProtocol,
-                  networkService: NetworkServiceProtocol,
                   router: RouterProtocol,
                   tracks: [TrackModel.Track],
                   index: Int
     ) {
         self.view = view
-        self.networkService = networkService
         self.tracks = tracks
         self.router = router
         self.index = index

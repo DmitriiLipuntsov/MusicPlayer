@@ -16,10 +16,11 @@ protocol AssemblyBuilderProtocol {
 
 class AssemblyModuleBuilder: AssemblyBuilderProtocol {
     
+    let coreDataService = CoreDataStorage()
+    
     func creatMainModule(router: RouterProtocol) -> UIViewController {
         let view = SearchViewController()
         let networkService = NetworkService()
-        let coreDataService = CoreDataStorage()
         let presenter = SearchPresenter(view: view, router: router, networkService: networkService, coreDataService: coreDataService)
         view.presenter = presenter
         return view
@@ -27,8 +28,7 @@ class AssemblyModuleBuilder: AssemblyBuilderProtocol {
     
     func creatDetailModule(router: RouterProtocol, tracks: [TrackModel.Track], index: Int) -> UIViewController {
         let view = TrackDetailViewController()
-        let networkService = NetworkService()
-        let presenter = TrackDetailPresenter(view: view, networkService: networkService, router: router, tracks: tracks, index: index)
+        let presenter = TrackDetailPresenter(view: view, router: router, tracks: tracks, index: index)
         view.presenter = presenter
         
         return view
@@ -36,7 +36,6 @@ class AssemblyModuleBuilder: AssemblyBuilderProtocol {
     
     func creatLibraryModule(router: RouterProtocol) -> UIViewController {
         let view = LibraryViewController()
-        let coreDataService = CoreDataStorage()
         let presenter = LibraryPresenter(view: view, router: router, coreDataService: coreDataService)
         view.presenter = presenter
         

@@ -63,7 +63,7 @@ class Router: RouterProtocol {
             searchNavigationController.viewControllers = [mainViewController]
             libraryNavigationController.viewControllers = [libraryVieweController]
             tabBarController.setViewControllers(
-                [searchNavigationController, libraryNavigationController],
+                [libraryNavigationController, searchNavigationController],
                 animated: true
             )
         }
@@ -78,10 +78,6 @@ class Router: RouterProtocol {
     }
     
     func popToRoot(tracks: [TrackModel.Track], index: Int) {
-//        if let navigationController = searchNavigationController {
-//            navigationController.popToRootViewController(animated: true)
-//
-//        }
         tabBarController?.tracks = tracks
         tabBarController?.index = index
         tabBarController?.setupTrack()

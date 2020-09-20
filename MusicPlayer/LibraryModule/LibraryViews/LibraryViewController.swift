@@ -57,5 +57,13 @@ extension LibraryViewController: UITableViewDataSource {
 }
 
 extension LibraryViewController: LibraryViewProtocol {
+    func success() {
+        tableView.reloadData()
+    }
+    
+    func failure(error: Error) {
+        print(error.localizedDescription)
+    }
+    
     
 }
