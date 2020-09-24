@@ -18,15 +18,13 @@ class Player: NSObject {
         return avPlayer
     }()
     
-    var playerItem: AVPlayerItem? 
-    
     private var urlCurrentTrack: String?
     
     func playTrack(previewUrl: String?) {
         if urlCurrentTrack != previewUrl {
             urlCurrentTrack = previewUrl
             guard let url = URL(string: previewUrl ?? "") else { return }
-            playerItem = AVPlayerItem(url: url)
+            let playerItem = AVPlayerItem(url: url)
             avPlayer.replaceCurrentItem(with: playerItem)
             avPlayer.play()
         }

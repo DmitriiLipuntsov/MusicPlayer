@@ -21,7 +21,7 @@ class LibraryViewController: UIViewController {
         
     }
     
-    func setup() {
+    private func setup() {
         
         let nib = UINib(nibName: "TrackViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "TrackCell")

@@ -50,7 +50,7 @@ class TrackDetailPresenter: TrackDetailPresenterProtocol {
         
     }
     
-    public func setTrack() {
+    func setTrack() {
         let track = tracks[index]
         view?.setTrack(track: track)
     }

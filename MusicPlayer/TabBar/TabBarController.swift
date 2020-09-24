@@ -11,7 +11,8 @@ import SDWebImage
 
 class TabBarController: UITabBarController {
     
-    var trackView = TabBarTrackView()
+    private var trackView = TabBarTrackView()
+    var router: RouterProtocol?
     var tracks: [TrackModel.Track]?
     var index: Int = 0
     var player = Player.shared
@@ -19,13 +20,17 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.tintColor = #colorLiteral(red: 0.9889323115, green: 0.1831878126, blue: 0.3349292278, alpha: 1)
-        
+        trackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(trackViewPressed)))
         setTrackBar()
         creatButtonsActions()
         NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
     }
     
-    func setTrackBar() {
+    func setupTrack() {
+        setTrack(track: tracks?[index])
+    }
+    
+    private func setTrackBar() {
         view.addSubview(trackView)
         trackView.translatesAutoresizingMaskIntoConstraints = false
         trackView.backgroundColor = .systemGroupedBackground
@@ -36,11 +41,7 @@ class TabBarController: UITabBarController {
         trackView.heightAnchor.constraint(equalToConstant: 70).isActive = true
     }
     
-    func setupTrack() {
-        setTrack(track: tracks?[index])
-    }
-    
-    func setTrack(track: TrackModel.Track?) {
+    private func setTrack(track: TrackModel.Track?) {
         trackView.trackNameLabel.text = track?.trackName
         trackView.artistNameLabel.text = track?.artistName
         trackView.artistNameLabel.isHidden = false
@@ -52,7 +53,7 @@ class TabBarController: UITabBarController {
     
     //MARK: - ButtonsActions
     
-    func creatButtonsActions() {
+    private func creatButtonsActions() {
         
         trackView.trackControlView.previousTrackButton.addTarget(
             self,
@@ -93,7 +94,7 @@ class TabBarController: UITabBarController {
         nextTrack(isNextTrack: true)
     }
     
-    func nextTrack(isNextTrack: Bool) {
+    private func nextTrack(isNextTrack: Bool) {
         guard let tracks = tracks else { return }
                 if isNextTrack {
                 index += 1
@@ -115,8 +116,9 @@ class TabBarController: UITabBarController {
         nextTrack(isNextTrack: true)
     }
     
-    func gest() {
-        
+    @objc func trackViewPressed() {
+        guard let tracks = tracks else { return }
+        router?.showDetail(tracks: tracks, index: index)
     }
     
 }

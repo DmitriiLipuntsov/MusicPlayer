@@ -64,14 +64,6 @@ class SearchPresenter: SearchResponseViewPresenterProtocol {
         }
     }
     
-    func trackModel(track: Track) -> TrackModel.Track {
-        return TrackModel.Track.init(trackName: track.trackName,
-                                    collectionName: track.collectionName,
-                                    artistName: track.artistName,
-                                    iconUrlString: track.artworkUrl100,
-                                    previewUrl: track.previewUrl)
-    }
-    
     func tapOnTheTrack(tracks: [TrackModel.Track], index: Int) {
         router?.showDetail(tracks: tracks, index: index)
     }
@@ -80,7 +72,15 @@ class SearchPresenter: SearchResponseViewPresenterProtocol {
         coreDataService?.saveTrack(track: track)
     }
     
-    func getSavedTrack() {
+    private func trackModel(track: Track) -> TrackModel.Track {
+        return TrackModel.Track.init(trackName: track.trackName,
+                                    collectionName: track.collectionName,
+                                    artistName: track.artistName,
+                                    iconUrlString: track.artworkUrl100,
+                                    previewUrl: track.previewUrl)
+    }
+    
+    private func getSavedTrack() {
         coreDataService?.featchTrack(complition: { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {

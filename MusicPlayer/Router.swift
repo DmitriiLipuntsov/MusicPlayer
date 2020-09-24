@@ -40,13 +40,13 @@ class Router: RouterProtocol {
         setupLibraryNavigationController()
     }
     
-    func setupSearchNavigationController() {
+    private func setupSearchNavigationController() {
         searchNavigationController?.navigationBar.prefersLargeTitles = true
         searchNavigationController?.tabBarItem.image = UIImage(named: "search")
         searchNavigationController?.tabBarItem.title = "Search"
     }
     
-    func setupLibraryNavigationController() {
+    private func setupLibraryNavigationController() {
         libraryNavigationController?.navigationBar.prefersLargeTitles = true
         libraryNavigationController?.tabBarItem.image = UIImage(named: "library")
         libraryNavigationController?.tabBarItem.title = "Library"
@@ -55,6 +55,7 @@ class Router: RouterProtocol {
     func initialViewController() {
         
         if let tabBarController = tabBarController {
+            tabBarController.router = self
             guard let searchNavigationController = searchNavigationController else { return }
             guard let libraryNavigationController = libraryNavigationController else { return }
             guard let mainViewController = assemblyBuilder?.creatMainModule(router: self) else { return }

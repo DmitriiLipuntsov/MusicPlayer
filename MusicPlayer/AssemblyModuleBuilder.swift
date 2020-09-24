@@ -16,7 +16,7 @@ protocol AssemblyBuilderProtocol {
 
 class AssemblyModuleBuilder: AssemblyBuilderProtocol {
     
-    let coreDataService = CoreDataStorage()
+    private let coreDataService = CoreDataStorage()
     
     func creatMainModule(router: RouterProtocol) -> UIViewController {
         let view = SearchViewController()

@@ -26,7 +26,7 @@ class TrackDetailViewController: UIViewController {
 
     }
     
-    func loadAllView() {
+    private func loadAllView() {
         view.addSubview(trackDetailView)
         trackDetailView.translatesAutoresizingMaskIntoConstraints = false
         trackDetailView.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
@@ -44,7 +44,7 @@ class TrackDetailViewController: UIViewController {
         
     //MARK: - ButtonsActions
     
-    func creatButtonsActions() {
+    private func creatButtonsActions() {
         trackDetailView.dragDownButton.addTarget(
             self,
             action: #selector(dragDownButtonPressed),
@@ -100,7 +100,7 @@ class TrackDetailViewController: UIViewController {
     
     //MARK: - SlidersAction
     
-    func creatSlidersAction() {
+    private func creatSlidersAction() {
         
         trackDetailView.volumeSlider.addTarget(
             self,
