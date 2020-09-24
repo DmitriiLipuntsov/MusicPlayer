@@ -125,9 +125,8 @@
 				7705FF3C24862D30007D8663 /* SceneDelegate.swift */,
 				7754D19F24A0CE4000AF5D21 /* AssemblyModuleBuilder.swift */,
 				7754D1A124A0CE9C00AF5D21 /* Router.swift */,
-				77556D7924EC348F001FAE06 /* TabBarController.swift */,
 				77556DA224F5DA28001FAE06 /* Player.swift */,
-				77556D7D24EC40C5001FAE06 /* TabBarTrackView */,
+				774C306B25182F8000546F8B /* TabBar */,
 				771177D02492527E00B0C36E /* SearchModule */,
 				7757D8C824D1E3A000CDE725 /* LibraryModule */,
 				7754D1A624A2645100AF5D21 /* DitailModule */,
@@ -203,6 +202,15 @@
 				771177F224926B4500B0C36E /* TrackViewCell.xib */,
 			);
 			path = ViewCell;
+			sourceTree = "<group>";
+		};
+		774C306B25182F8000546F8B /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				77556D7924EC348F001FAE06 /* TabBarController.swift */,
+				77556D7D24EC40C5001FAE06 /* TabBarTrackView */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		7754D1A524A1146500AF5D21 /* Models */ = {
@@ -320,7 +328,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Дмитрий липунцов";
 				TargetAttributes = {
 					7705FF3624862D30007D8663 = {
@@ -484,6 +492,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -544,6 +553,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

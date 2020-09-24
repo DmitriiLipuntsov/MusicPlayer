@@ -14,7 +14,6 @@ class TabBarTrackView: UIView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 16
-        stackView.backgroundColor = .green
         return stackView
     }()
     
@@ -23,7 +22,6 @@ class TabBarTrackView: UIView {
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.spacing = 0
-        stackView.backgroundColor = .green
         return stackView
     }()
     
@@ -70,7 +68,6 @@ class TabBarTrackView: UIView {
     func setStackView() {
         
         addSubview(stackView)
-        
         addItemsToStackView()
         addItemsToStackViewLabel()
         setStackViewConstraints()

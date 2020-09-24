@@ -6,10 +6,9 @@
 //  Copyright © 2020 Дмитрий липунцов. All rights reserved.
 //
 
-import Foundation
 import AVKit
 
-class Player {
+class Player: NSObject {
     
     static var shared = Player()
     
@@ -19,14 +18,17 @@ class Player {
         return avPlayer
     }()
     
-    var currentDuration: Double?
+    var playerItem: AVPlayerItem? 
+    
+    private var urlCurrentTrack: String?
     
     func playTrack(previewUrl: String?) {
-        guard let url = URL(string: previewUrl ?? "") else { return }
-        let playerItem = AVPlayerItem(url: url)
-        if avPlayer.currentItem != playerItem {
-        avPlayer.replaceCurrentItem(with: playerItem)
-        avPlayer.play()
+        if urlCurrentTrack != previewUrl {
+            urlCurrentTrack = previewUrl
+            guard let url = URL(string: previewUrl ?? "") else { return }
+            playerItem = AVPlayerItem(url: url)
+            avPlayer.replaceCurrentItem(with: playerItem)
+            avPlayer.play()
         }
     }
     
@@ -57,6 +59,4 @@ class Player {
         let percentage = currentTimeSeconds / durationSeconds
         slider.value = Float(percentage)
     }
-
-    
 }

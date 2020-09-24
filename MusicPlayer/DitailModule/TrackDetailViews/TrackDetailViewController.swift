@@ -22,6 +22,8 @@ class TrackDetailViewController: UIViewController {
         loadAllView()
         creatButtonsActions()
         creatSlidersAction()
+        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
+
     }
     
     func loadAllView() {
@@ -35,6 +37,11 @@ class TrackDetailViewController: UIViewController {
         
     }
     
+    //MARK: - NotificationCenter selector(playerDidFinishPlaying)
+    @objc func playerDidFinishPlaying() {
+        nextTrackButtonPressed()
+    }
+        
     //MARK: - ButtonsActions
     
     func creatButtonsActions() {

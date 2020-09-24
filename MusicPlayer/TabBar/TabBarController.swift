@@ -22,6 +22,7 @@ class TabBarController: UITabBarController {
         
         setTrackBar()
         creatButtonsActions()
+        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
     }
     
     func setTrackBar() {
@@ -30,7 +31,7 @@ class TabBarController: UITabBarController {
         trackView.backgroundColor = .systemGroupedBackground
         
         trackView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        trackView.bottomAnchor.constraint(equalTo: tabBar.topAnchor , constant: -1 ).isActive = true
+        trackView.bottomAnchor.constraint(equalTo: tabBar.topAnchor , constant: -1).isActive = true
         trackView.widthAnchor.constraint(equalToConstant: view.bounds.width).isActive = true
         trackView.heightAnchor.constraint(equalToConstant: 70).isActive = true
     }
@@ -107,10 +108,12 @@ class TabBarController: UITabBarController {
             }
             
         setTrack(track: tracks[index])
-        
-        // эту строку надо куда то наверно перенести
         player.playTrack(previewUrl: tracks[index].previewUrl)
         }
+    
+    @objc func playerDidFinishPlaying() {
+        nextTrack(isNextTrack: true)
+    }
     
     func gest() {
         

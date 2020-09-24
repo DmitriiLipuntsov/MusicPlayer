@@ -47,6 +47,7 @@ class TrackDetailPresenter: TrackDetailPresenterProtocol {
     
     func popToRoot() {
         router?.popToRoot(tracks: tracks, index: index)
+        
     }
     
     public func setTrack() {

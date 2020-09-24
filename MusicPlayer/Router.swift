@@ -27,7 +27,6 @@ class Router: RouterProtocol {
     var searchNavigationController: UINavigationController?
     var libraryNavigationController: UINavigationController?
     var assemblyBuilder: AssemblyBuilderProtocol?
-    var searchVC: SearchViewController?
     
     init(tabBarController: TabBarController,
          searchNavigationController: UINavigationController,
@@ -67,7 +66,6 @@ class Router: RouterProtocol {
                 animated: true
             )
         }
-        
     }
     
     func showDetail(tracks: [TrackModel.Track], index: Int) {
@@ -82,5 +80,4 @@ class Router: RouterProtocol {
         tabBarController?.index = index
         tabBarController?.setupTrack()
     }
-    
 }
