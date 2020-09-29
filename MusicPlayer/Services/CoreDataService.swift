@@ -9,13 +9,15 @@
 import UIKit
 import CoreData
 
-protocol CoreDataServiceDelegate {
+protocol CoreDataServiceDelegate: class {
     func update()
 }
 
 protocol CoreDataServiceProtocol {
-    var delegate: CoreDataServiceDelegate? { get set }
+    var libraryDelegate: CoreDataServiceDelegate? { get set }
+    var searchDelegat: CoreDataServiceDelegate? { get set }
     func saveTrack(track: TrackModel.Track?)
+    func deleteTrack(index: Int)
     func featchTrack(complition: @escaping (Result<[TrackModel.Track], Error>) -> Void)
 }
 
@@ -23,7 +25,8 @@ class CoreDataStorage: CoreDataServiceProtocol {
 
     private let manageContext = (UIApplication.shared.delegate as! AppDelegate).persistentConteiner.viewContext
     
-    var delegate: CoreDataServiceDelegate?
+    weak var libraryDelegate: CoreDataServiceDelegate?
+    weak var searchDelegat: CoreDataServiceDelegate?
     
     func saveTrack(track: TrackModel.Track?) {
         
@@ -39,7 +42,7 @@ class CoreDataStorage: CoreDataServiceProtocol {
             
         do {
             try manageContext.save()
-            delegate?.update()
+            libraryDelegate?.update()
         }
         catch {
             print(error.localizedDescription)
@@ -52,6 +55,19 @@ class CoreDataStorage: CoreDataServiceProtocol {
             let savedTrack = try manageContext.fetch(featchRequest)
             let tracks = getConvertedSavedTracks(savedTrack: savedTrack)
             complition(.success(tracks))
+        }
+        catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func deleteTrack(index: Int) {
+        let featchRequest: NSFetchRequest<SavedTrack> = SavedTrack.fetchRequest()
+        do {
+            let savedTracks = try manageContext.fetch(featchRequest)
+            manageContext.delete(savedTracks[index])
+            try manageContext.save()
+            searchDelegat?.update()
         }
         catch {
             print(error.localizedDescription)

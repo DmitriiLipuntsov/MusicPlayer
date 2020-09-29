@@ -20,9 +20,9 @@ protocol LibraryViewPresenterProtocol: class {
          router: RouterProtocol,
          coreDataService: CoreDataServiceProtocol)
     
-    var tracks: [TrackModel.Track] { get }
+    var tracks: [TrackModel.Track] { get set }
     func tapOnTheTrack(tracks: [TrackModel.Track], index: Int)
-    
+    func deleteTrack(index: Int)
 }
 
 //MARK: - Class
@@ -39,7 +39,7 @@ class LibraryPresenter: LibraryViewPresenterProtocol {
         self.view = view
         self.router = router
         self.coreDataService = coreDataService
-        self.coreDataService?.delegate = self
+        self.coreDataService?.libraryDelegate = self
         featchTracks()
     }
     
@@ -60,6 +60,11 @@ class LibraryPresenter: LibraryViewPresenterProtocol {
                 }
             }
         })
+    }
+    
+    func deleteTrack(index: Int) {
+        tracks.remove(at: index)
+        coreDataService?.deleteTrack(index: index)
     }
 }
 

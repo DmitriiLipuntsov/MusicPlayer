@@ -26,8 +26,10 @@ class TabBarController: UITabBarController {
         NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
     }
     
-    func setupTrack() {
-        setTrack(track: tracks?[index])
+    func setupTrack(tracks: [TrackModel.Track], index: Int) {
+        self.tracks = tracks
+        self.index = index
+        setTrack(track: tracks[index])
     }
     
     private func setTrackBar() {

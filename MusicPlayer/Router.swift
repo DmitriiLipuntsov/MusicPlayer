@@ -77,8 +77,6 @@ class Router: RouterProtocol {
     }
     
     func popToRoot(tracks: [TrackModel.Track], index: Int) {
-        tabBarController?.tracks = tracks
-        tabBarController?.index = index
-        tabBarController?.setupTrack()
+        tabBarController?.setupTrack(tracks: tracks, index: index)
     }
 }

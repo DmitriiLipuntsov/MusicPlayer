@@ -54,8 +54,17 @@ extension LibraryViewController: UITableViewDataSource {
         cell.set(viewModel: track)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            presenter?.deleteTrack(index: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .left)
+            (tabBarController as! TabBarController).tracks?.remove(at: indexPath.row)
+        }
+    }
 }
 
+//MARK: - LibraryViewProtocol
 extension LibraryViewController: LibraryViewProtocol {
     func success() {
         tableView.reloadData()
@@ -64,6 +73,4 @@ extension LibraryViewController: LibraryViewProtocol {
     func failure(error: Error) {
         print(error.localizedDescription)
     }
-    
-    
 }

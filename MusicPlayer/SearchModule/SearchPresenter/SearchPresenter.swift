@@ -30,7 +30,7 @@ class SearchPresenter: SearchResponseViewPresenterProtocol {
     weak var view: SearchResponseViewProtocol?
     var router: RouterProtocol?
     let networkService: NetworkServiceProtocol!
-    let coreDataService: CoreDataServiceProtocol?
+    var coreDataService: CoreDataServiceProtocol?
     var foundTracks: [TrackModel.Track]?
     var savedTracks: [TrackModel.Track]?
     
@@ -42,6 +42,7 @@ class SearchPresenter: SearchResponseViewPresenterProtocol {
         self.router = router
         self.networkService = networkService
         self.coreDataService = coreDataService
+        self.coreDataService?.searchDelegat = self
         getSavedTrack()
     }
     
@@ -94,4 +95,12 @@ class SearchPresenter: SearchResponseViewPresenterProtocol {
         })
     }
     
+}
+
+
+extension SearchPresenter: CoreDataServiceDelegate {
+    func update() {
+        getSavedTrack()
+        view?.success()
+    }
 }
