@@ -10,7 +10,7 @@ import UIKit
 
 class TrackDetailViewController: UIViewController {
     
-    private var trackDetailView = TrackDetailView()
+    var trackDetailView = TrackDetailView()
     var presenter: TrackDetailPresenterProtocol?
     var tracks: [TrackModel.Track]?
     var player = Player.shared
@@ -18,12 +18,25 @@ class TrackDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        navigationController?.isNavigationBarHidden = true
         loadAllView()
         creatButtonsActions()
         creatSlidersAction()
         NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
-
+    }
+    
+    override func viewWillLayoutSubviews() {
+        setImageForPlayButton()
+        player.observePlayerCurrantTime(slider: trackDetailView.currentTimeSlider,
+                                        currentTimeLabel: trackDetailView.currentTimeLabel,
+                                        durationLabel: trackDetailView.durationLabel)
+    }
+    
+    private func setImageForPlayButton() {
+        if player.isPlaying {
+            trackDetailView.trackControlView.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+        } else {
+            trackDetailView.trackControlView.playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+        }
     }
     
     private func loadAllView() {
@@ -87,9 +100,11 @@ class TrackDetailViewController: UIViewController {
     @objc func playPouseButtonPressed() {
         if player.avPlayer.timeControlStatus == .paused {
             player.avPlayer.play()
+            player.isPlaying = true
             trackDetailView.trackControlView.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         } else {
             player.avPlayer.pause()
+            player.isPlaying = false
             trackDetailView.trackControlView.playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
         }
     }

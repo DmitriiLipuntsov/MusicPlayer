@@ -18,6 +18,8 @@ class Player: NSObject {
         return avPlayer
     }()
     
+    var isPlaying = false
+    
     private var urlCurrentTrack: String?
     
     func playTrack(previewUrl: String?) {
@@ -27,6 +29,7 @@ class Player: NSObject {
             let playerItem = AVPlayerItem(url: url)
             avPlayer.replaceCurrentItem(with: playerItem)
             avPlayer.play()
+            isPlaying = true
         }
     }
     
@@ -40,6 +43,13 @@ class Player: NSObject {
     }
     
     func observePlayerCurrantTime(slider: UISlider, currentTimeLabel: UILabel, durationLabel: UILabel) {
+        if !isPlaying {
+            currentTimeLabel.text = avPlayer.currentTime().toDisplayString()
+            let durationTime = self.avPlayer.currentItem?.duration
+            let currentDurationText = ((durationTime ?? CMTimeMake(value: 1, timescale: 1)) - avPlayer.currentTime()).toDisplayString()
+            durationLabel.text = "-\(currentDurationText)"
+            self.updateCurrentTimeSlider(slider: slider)
+        }
         let interval = CMTime(value: 1, timescale: 2)
         avPlayer.addPeriodicTimeObserver(forInterval: interval, queue: nil, using: { [weak self] (time) in
             guard let self = self else { return }
@@ -51,7 +61,7 @@ class Player: NSObject {
         })
     }
     
-    private func updateCurrentTimeSlider(slider: UISlider) {
+    func updateCurrentTimeSlider(slider: UISlider) {
         let currentTimeSeconds = CMTimeGetSeconds(avPlayer.currentTime())
         let durationSeconds = CMTimeGetSeconds(avPlayer.currentItem?.duration ?? CMTimeMake(value: 1, timescale: 1))
         let percentage = currentTimeSeconds / durationSeconds

@@ -58,10 +58,10 @@ class Router: RouterProtocol {
             tabBarController.router = self
             guard let searchNavigationController = searchNavigationController else { return }
             guard let libraryNavigationController = libraryNavigationController else { return }
-            guard let mainViewController = assemblyBuilder?.creatMainModule(router: self) else { return }
-            guard let libraryVieweController = assemblyBuilder?.creatLibraryModule(router: self) else { return }
-            searchNavigationController.viewControllers = [mainViewController]
-            libraryNavigationController.viewControllers = [libraryVieweController]
+            guard let searchViewController = assemblyBuilder?.creatMainModule(router: self) else { return }
+            guard let libraryViewController = assemblyBuilder?.creatLibraryModule(router: self) else { return }
+            searchNavigationController.viewControllers = [searchViewController]
+            libraryNavigationController.viewControllers = [libraryViewController]
             tabBarController.setViewControllers(
                 [libraryNavigationController, searchNavigationController],
                 animated: true
@@ -69,14 +69,22 @@ class Router: RouterProtocol {
         }
     }
     
+    func popToRoot(tracks: [TrackModel.Track], index: Int) {
+        tabBarController?.setupTrack(tracks: tracks, index: index)
+        tabBarController?.setImageForPlayButton()
+    }
+    
     func showDetail(tracks: [TrackModel.Track], index: Int) {
         if let navigationController = searchNavigationController {
-            guard let detailViewController = assemblyBuilder?.creatDetailModule(router: self, tracks: tracks, index: index) else { return }
-            navigationController.present(detailViewController, animated: true)
+            presentDetail(navigationController: navigationController, tracks: tracks, index: index)
+        } else if let navigationController = searchNavigationController {
+            presentDetail(navigationController: navigationController, tracks: tracks, index: index)
         }
     }
     
-    func popToRoot(tracks: [TrackModel.Track], index: Int) {
-        tabBarController?.setupTrack(tracks: tracks, index: index)
+    private func presentDetail(navigationController: UINavigationController, tracks: [TrackModel.Track], index: Int) {
+        guard let detailViewController = assemblyBuilder?.creatDetailModule(router: self, tracks: tracks, index: index) else { return }
+        navigationController.present(detailViewController, animated: true)
     }
+    
 }

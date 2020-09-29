@@ -20,16 +20,28 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.tintColor = #colorLiteral(red: 0.9889323115, green: 0.1831878126, blue: 0.3349292278, alpha: 1)
-        trackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(trackViewPressed)))
         setTrackBar()
         creatButtonsActions()
-        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(playerDidFinishPlaying),
+                                               name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
+                                               object: nil)
+        trackView.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                              action: #selector(trackViewPressed)))
     }
     
     func setupTrack(tracks: [TrackModel.Track], index: Int) {
         self.tracks = tracks
         self.index = index
         setTrack(track: tracks[index])
+    }
+    
+    func setImageForPlayButton() {
+        if player.isPlaying {
+            trackView.trackControlView.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+        } else {
+            trackView.trackControlView.playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+        }
     }
     
     private func setTrackBar() {
@@ -85,9 +97,11 @@ class TabBarController: UITabBarController {
     @objc func playPouseButtonPressed() {
         if player.avPlayer.timeControlStatus == .paused {
             player.avPlayer.play()
+            player.isPlaying = true
             trackView.trackControlView.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         } else {
             player.avPlayer.pause()
+            player.isPlaying = false
             trackView.trackControlView.playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
         }
     }
