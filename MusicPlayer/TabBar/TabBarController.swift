@@ -126,7 +126,29 @@ class TabBarController: UITabBarController {
             
         setTrack(track: tracks[index])
         player.playTrack(previewUrl: tracks[index].previewUrl)
+        transferIndexInTableView(tracks: tracks)
+    }
+    
+    private func transferIndexInTableView(tracks: [TrackModel.Track]) {
+        if (selectedViewController as! UINavigationController).topViewController is SearchViewController {
+            if tracks == ((selectedViewController as! UINavigationController).topViewController as! SearchViewController).presenter.foundTracks {
+                ((selectedViewController as! UINavigationController).topViewController as! SearchViewController).selectedRow = index
+            }
+        } else if (selectedViewController as! UINavigationController).topViewController is LibraryViewController {
+            if tracks == ((selectedViewController as! UINavigationController).topViewController as! LibraryViewController).presenter?.tracks {
+                ((selectedViewController as! UINavigationController).topViewController as! LibraryViewController).selectedRow = index
+            }
         }
+    }
+    
+    private func transferIndexInTableView1(tracks: [TrackModel.Track]) {
+            if tracks == ((selectedViewController as? UINavigationController)?.topViewController as! SearchViewController).presenter.foundTracks {
+                ((selectedViewController as! UINavigationController).topViewController as! SearchViewController).selectedRow = index
+            } else if tracks == ((selectedViewController as? UINavigationController)?.topViewController as! LibraryViewController).presenter?.tracks {
+                ((selectedViewController as! UINavigationController).topViewController as! LibraryViewController).selectedRow = index
+            }
+        
+    }
     
     @objc func playerDidFinishPlaying() {
         nextTrack(isNextTrack: true)

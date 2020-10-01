@@ -12,6 +12,15 @@ class LibraryViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    var selectedRow: Int? {
+        didSet {
+            guard var selectedRow = selectedRow else { return }
+            if selectedRow >= (presenter?.tracks.count)! {
+                selectedRow = selectedRow - ((presenter?.tracks.count)! + 1)
+            }
+            tableView.selectRow(at: IndexPath(row: selectedRow, section: 0), animated: false, scrollPosition: UITableView.ScrollPosition.middle)
+        }
+    }
     var presenter: LibraryViewPresenterProtocol?
     
     override func viewDidLoad() {

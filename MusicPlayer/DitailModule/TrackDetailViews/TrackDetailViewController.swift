@@ -10,7 +10,7 @@ import UIKit
 
 class TrackDetailViewController: UIViewController {
     
-    var trackDetailView = TrackDetailView()
+    private var trackDetailView = TrackDetailView()
     var presenter: TrackDetailPresenterProtocol?
     var tracks: [TrackModel.Track]?
     var player = Player.shared

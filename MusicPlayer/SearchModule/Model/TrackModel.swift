@@ -10,7 +10,7 @@ import Foundation
 
 struct TrackModel {
     
-    struct Track {
+    struct Track: Equatable {
         var trackName: String
         var collectionName: String?
         var artistName: String

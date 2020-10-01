@@ -72,6 +72,17 @@ class Router: RouterProtocol {
     func popToRoot(tracks: [TrackModel.Track], index: Int) {
         tabBarController?.setupTrack(tracks: tracks, index: index)
         tabBarController?.setImageForPlayButton()
+        if tabBarController?.selectedViewController == searchNavigationController {
+            let searchViewController = searchNavigationController?.topViewController as! SearchViewController
+            if searchViewController.presenter.foundTracks == tracks {
+                searchViewController.selectedRow = index
+            }
+        } else if tabBarController?.selectedViewController == libraryNavigationController {
+            let libraryViewController = libraryNavigationController?.topViewController as! LibraryViewController
+            if libraryViewController.presenter?.tracks == tracks {
+                libraryViewController.selectedRow = index
+            }
+        }
     }
     
     func showDetail(tracks: [TrackModel.Track], index: Int) {
