@@ -8,7 +8,7 @@
 
 import AVKit
 
-class Player: NSObject {
+class Player {
     
     static var shared = Player()
     

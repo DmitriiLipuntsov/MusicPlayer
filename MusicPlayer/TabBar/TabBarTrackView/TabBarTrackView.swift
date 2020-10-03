@@ -30,7 +30,6 @@ class TabBarTrackView: UIView {
         image.translatesAutoresizingMaskIntoConstraints = false
         image.widthAnchor.constraint(equalToConstant: 60).isActive = true
         image.image = #imageLiteral(resourceName: "library")
-        
         return image
     }()
     
@@ -46,7 +45,6 @@ class TabBarTrackView: UIView {
         label.text = "artistNameLabel"
         label.textColor = #colorLiteral(red: 0.9889323115, green: 0.1831878126, blue: 0.3349292278, alpha: 1)
         label.isHidden = true
-        
         return label
     }()
     
@@ -54,7 +52,6 @@ class TabBarTrackView: UIView {
         let view = TrackControlView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.widthAnchor.constraint(equalToConstant: 140).isActive = true
-        
         return view
     }()
 
@@ -71,6 +68,7 @@ class TabBarTrackView: UIView {
         addItemsToStackView()
         addItemsToStackViewLabel()
         setStackViewConstraints()
+        
     }
     
     func addItemsToStackView() {
@@ -85,6 +83,7 @@ class TabBarTrackView: UIView {
         
         stackViewLabel.addArrangedSubview(trackNameLabel)
         stackViewLabel.addArrangedSubview(artistNameLabel)
+        
     }
     
     func setStackViewConstraints() {
@@ -96,5 +95,4 @@ class TabBarTrackView: UIView {
         stackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
         
     }
-    
 }
