@@ -31,6 +31,6 @@ class TrackDetailView: UIView {
         minVolumeButton.setImage(#imageLiteral(resourceName: "IconMin"), for: .normal)
         maxVolumeButton.setImage(#imageLiteral(resourceName: "IconMax"), for: .normal)
         volumeSlider.value = 1
-        
+        trackImageView.topAnchor.constraint(equalTo: dragDownButton.bottomAnchor, constant: self.bounds.height / 12).isActive = true
     }
 }

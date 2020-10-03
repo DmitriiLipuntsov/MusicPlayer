@@ -31,7 +31,7 @@ extension TrackDetailView {
         addSubview(imageView)
         imageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 40).isActive = true
         imageView.rightAnchor.constraint(equalTo: rightAnchor, constant: -40).isActive = true
-        imageView.topAnchor.constraint(equalTo: dragDownButton.bottomAnchor, constant: 10).isActive = true
+        //imageView.topAnchor.constraint(equalTo: dragDownButton.bottomAnchor, constant: 10).isActive = true
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1).isActive = true
         
         return imageView
