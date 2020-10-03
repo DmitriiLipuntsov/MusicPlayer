@@ -12,18 +12,14 @@ class SearchViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    private var timer: Timer?
+    var presenter: SearchResponseViewPresenterProtocol!
     var selectedRow: Int? {
         didSet {
-            guard var selectedRow = selectedRow else { return }
-            if selectedRow >= presenter.foundTracks!.count {
-                selectedRow = selectedRow - (presenter.foundTracks!.count + 1)
-            }
+            guard let selectedRow = selectedRow else { return }
             tableView.selectRow(at: IndexPath(row: selectedRow, section: 0), animated: false, scrollPosition: UITableView.ScrollPosition.middle)
         }
     }
-    var presenter: SearchResponseViewPresenterProtocol!
-    private var timer: Timer?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,19 +30,9 @@ class SearchViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print(#function)
-        
-        guard let tabBarController = (tabBarController as! TabBarController).tracks  else { return }
-        if tabBarController != presenter.foundTracks {
-            tableView.selectRow(at: nil, animated: false, scrollPosition: .none)
-        } else {
-            tableView.selectRow(at: IndexPath(row: selectedRow ?? 0, section: 0), animated: true, scrollPosition: .middle)
-            print(selectedRow)
+        if selectedRow == nil {
+            tableView.selectRow(at: nil, animated: false, scrollPosition: .top)
         }
-    }
-    
-    override func viewWillLayoutSubviews() {
-        print(#function)
     }
     
     func setup() {
@@ -117,7 +103,5 @@ extension SearchViewController: SearchResponseViewProtocol {
         print("Error received requesting data: \(error.localizedDescription)")
     }
 }
-
-
 
 

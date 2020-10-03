@@ -12,22 +12,26 @@ class LibraryViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    var presenter: LibraryViewPresenterProtocol?
     var selectedRow: Int? {
         didSet {
-            guard var selectedRow = selectedRow else { return }
-            if selectedRow >= (presenter?.tracks.count)! {
-                selectedRow = selectedRow - ((presenter?.tracks.count)! + 1)
-            }
+            guard let selectedRow = selectedRow else { return }
             tableView.selectRow(at: IndexPath(row: selectedRow, section: 0), animated: false, scrollPosition: UITableView.ScrollPosition.middle)
         }
     }
-    var presenter: LibraryViewPresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setup()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if selectedRow == nil {
+            tableView.selectRow(at: nil, animated: false, scrollPosition: .top)
+        }
     }
     
     private func setup() {
@@ -37,7 +41,7 @@ class LibraryViewController: UIViewController {
         navigationItem.title = "Library"
         
     }
-
+    
 }
 
 

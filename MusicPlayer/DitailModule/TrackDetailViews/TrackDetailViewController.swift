@@ -137,11 +137,11 @@ class TrackDetailViewController: UIViewController {
     @objc func handelCurrentTimerSlider() {
         player.handelCurrentTimerSlider(slider: trackDetailView.currentTimeSlider)
     }
-    
 }
 
+//MARK: - TrackDetailViewProtocol
+
 extension TrackDetailViewController: TrackDetailViewProtocol {
-    
     func setTrack(track: TrackModel.Track?) {
         trackDetailView.artistNameLabel.text = track?.artistName
         trackDetailView.trackNameLabel.text = track?.trackName

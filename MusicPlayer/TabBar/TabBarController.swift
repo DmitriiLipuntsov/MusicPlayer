@@ -14,8 +14,22 @@ class TabBarController: UITabBarController {
     private var trackView = TabBarTrackView()
     var router: RouterProtocol?
     var tracks: [TrackModel.Track]?
-    var index: Int = 0
     var player = Player.shared
+    var index: Int = 0 {
+        didSet {
+            let libraryViewController = ((viewControllers?[0] as! UINavigationController)
+                                            .topViewController as! LibraryViewController)
+            let searchViewController = ((viewControllers?[1] as! UINavigationController)
+                                            .topViewController as! SearchViewController)
+            if tracks == libraryViewController.presenter?.tracks {
+                libraryViewController.selectedRow = index
+                searchViewController.selectedRow = nil
+            } else if tracks == searchViewController.presenter.foundTracks {
+                searchViewController.selectedRow = index
+                libraryViewController.selectedRow = nil
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,42 +126,25 @@ class TabBarController: UITabBarController {
     
     private func nextTrack(isNextTrack: Bool) {
         guard let tracks = tracks else { return }
+        var index = self.index
                 if isNextTrack {
                 index += 1
                 if tracks.count - 1 < index {
-                    index = 0
+                    self.index = 0
+                } else {
+                    self.index += 1
                 }
             } else {
                 index -= 1
                 if index == -1 {
-                    index = tracks.count - 1
+                    self.index = tracks.count - 1
+                } else {
+                    self.index -= 1
                 }
             }
             
-        setTrack(track: tracks[index])
-        player.playTrack(previewUrl: tracks[index].previewUrl)
-        transferIndexInTableView(tracks: tracks)
-    }
-    
-    private func transferIndexInTableView(tracks: [TrackModel.Track]) {
-        if (selectedViewController as! UINavigationController).topViewController is SearchViewController {
-            if tracks == ((selectedViewController as! UINavigationController).topViewController as! SearchViewController).presenter.foundTracks {
-                ((selectedViewController as! UINavigationController).topViewController as! SearchViewController).selectedRow = index
-            }
-        } else if (selectedViewController as! UINavigationController).topViewController is LibraryViewController {
-            if tracks == ((selectedViewController as! UINavigationController).topViewController as! LibraryViewController).presenter?.tracks {
-                ((selectedViewController as! UINavigationController).topViewController as! LibraryViewController).selectedRow = index
-            }
-        }
-    }
-    
-    private func transferIndexInTableView1(tracks: [TrackModel.Track]) {
-            if tracks == ((selectedViewController as? UINavigationController)?.topViewController as! SearchViewController).presenter.foundTracks {
-                ((selectedViewController as! UINavigationController).topViewController as! SearchViewController).selectedRow = index
-            } else if tracks == ((selectedViewController as? UINavigationController)?.topViewController as! LibraryViewController).presenter?.tracks {
-                ((selectedViewController as! UINavigationController).topViewController as! LibraryViewController).selectedRow = index
-            }
-        
+        setTrack(track: tracks[self.index])
+        player.playTrack(previewUrl: tracks[self.index].previewUrl)
     }
     
     @objc func playerDidFinishPlaying() {
@@ -158,5 +155,4 @@ class TabBarController: UITabBarController {
         guard let tracks = tracks else { return }
         router?.showDetail(tracks: tracks, index: index)
     }
-    
 }

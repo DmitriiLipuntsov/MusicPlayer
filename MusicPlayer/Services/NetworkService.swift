@@ -42,8 +42,5 @@ class NetworkService: NetworkServiceProtocol {
                 complition(.failure(jsonError))
             }
         }
-        
     }
-    
-    
 }
