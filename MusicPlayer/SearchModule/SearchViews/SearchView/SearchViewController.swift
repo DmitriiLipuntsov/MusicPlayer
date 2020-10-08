@@ -25,7 +25,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         setup()
         setupSearchBar()
-        searchBar(UISearchController().searchBar, textDidChange: "Billie")
+        searchBar(UISearchController().searchBar, textDidChange: "Nirvana")
     }
     
     override func viewWillAppear(_ animated: Bool) {

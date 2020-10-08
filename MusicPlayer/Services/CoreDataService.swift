@@ -15,7 +15,7 @@ protocol CoreDataServiceDelegate: class {
 
 protocol CoreDataServiceProtocol {
     var libraryDelegate: CoreDataServiceDelegate? { get set }
-    var searchDelegat: CoreDataServiceDelegate? { get set }
+    var searchDelegate: CoreDataServiceDelegate? { get set }
     func saveTrack(track: TrackModel.Track?)
     func deleteTrack(index: Int)
     func featchTrack(complition: @escaping (Result<[TrackModel.Track], Error>) -> Void)
@@ -26,7 +26,7 @@ class CoreDataStorage: CoreDataServiceProtocol {
     private let manageContext = (UIApplication.shared.delegate as! AppDelegate).persistentConteiner.viewContext
     
     weak var libraryDelegate: CoreDataServiceDelegate?
-    weak var searchDelegat: CoreDataServiceDelegate?
+    weak var searchDelegate: CoreDataServiceDelegate?
     
     func saveTrack(track: TrackModel.Track?) {
         
@@ -38,7 +38,6 @@ class CoreDataStorage: CoreDataServiceProtocol {
         savedTrack.iconUrlString = track?.iconUrlString
         savedTrack.trackName = track?.trackName
         savedTrack.previewUrl = track?.previewUrl
-        
             
         do {
             try manageContext.save()
@@ -67,7 +66,7 @@ class CoreDataStorage: CoreDataServiceProtocol {
             let savedTracks = try manageContext.fetch(featchRequest)
             manageContext.delete(savedTracks[index])
             try manageContext.save()
-            searchDelegat?.update()
+            searchDelegate?.update()
         }
         catch {
             print(error.localizedDescription)

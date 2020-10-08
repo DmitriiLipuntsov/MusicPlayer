@@ -80,7 +80,7 @@ extension LibraryViewController: UITableViewDataSource {
 //MARK: - LibraryViewProtocol
 extension LibraryViewController: LibraryViewProtocol {
     func success() {
-        tableView.reloadData()
+        tableView?.reloadData()
     }
     
     func failure(error: Error) {

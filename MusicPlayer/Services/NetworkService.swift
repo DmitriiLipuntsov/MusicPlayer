@@ -22,7 +22,7 @@ class NetworkService: NetworkServiceProtocol {
         let url = "https://itunes.apple.com/search"
         let parameters = [
             "term":"\(searchText)",
-            "limit":"10",
+            "limit":"100",
             "media":"music"
         ]
         

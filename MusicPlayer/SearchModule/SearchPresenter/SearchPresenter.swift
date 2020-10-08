@@ -42,25 +42,22 @@ class SearchPresenter: SearchResponseViewPresenterProtocol {
         self.router = router
         self.networkService = networkService
         self.coreDataService = coreDataService
-        self.coreDataService?.searchDelegat = self
+        self.coreDataService?.searchDelegate = self
         getSavedTrack()
     }
     
     func getTracks(searchText: String) {
         networkService.featchTracks(searchText: searchText) { [weak self] result in
             guard let self = self else { return }
-            
-            DispatchQueue.main.async {
-                switch result {
-                case.success(let tracks):
-                    let cells = tracks.results.map { track in
-                        self.trackModel(track: track)
-                    }
-                    self.foundTracks = cells
-                    self.view?.success()
-                case .failure(let error):
-                    self.view?.failure(error: error)
+            switch result {
+            case.success(let tracks):
+                let cells = tracks.results.map { track in
+                    self.trackModel(track: track)
                 }
+                self.foundTracks = cells
+                self.view?.success()
+            case .failure(let error):
+                self.view?.failure(error: error)
             }
         }
     }
@@ -84,17 +81,14 @@ class SearchPresenter: SearchResponseViewPresenterProtocol {
     private func getSavedTrack() {
         coreDataService?.featchTrack(complition: { [weak self] result in
             guard let self = self else { return }
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let tracks):
-                    self.savedTracks = tracks
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
+            switch result {
+            case .success(let tracks):
+                self.savedTracks = tracks
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         })
     }
-    
 }
 
 //MARK: - CoreDataServiceDelegate
