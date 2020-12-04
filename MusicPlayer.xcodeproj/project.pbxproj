@@ -13,6 +13,7 @@
 		7705FF4424862D31007D8663 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7705FF4324862D31007D8663 /* Assets.xcassets */; };
 		7705FF4724862D31007D8663 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7705FF4524862D31007D8663 /* LaunchScreen.storyboard */; };
 		7705FFD824923E78007D8663 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7705FFD724923E78007D8663 /* NetworkService.swift */; };
+		770F2C9E257AA78600869500 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 770F2C9D257AA78600869500 /* .gitignore */; };
 		771177C424924BC200B0C36E /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771177C324924BC200B0C36E /* SearchResponse.swift */; };
 		771177D3249253AE00B0C36E /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771177D2249253AE00B0C36E /* SearchPresenter.swift */; };
 		771177D62492552F00B0C36E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771177D42492552F00B0C36E /* SearchViewController.swift */; };
@@ -50,6 +51,7 @@
 		7705FF4624862D31007D8663 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7705FF4824862D31007D8663 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7705FFD724923E78007D8663 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		770F2C9D257AA78600869500 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		771177C324924BC200B0C36E /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 		771177D2249253AE00B0C36E /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		771177D42492552F00B0C36E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				7751F5FC24D9B255009607CE /* ToDo.rtf */,
+				770F2C9D257AA78600869500 /* .gitignore */,
 				7705FF3924862D30007D8663 /* MusicPlayer */,
 				7705FF3824862D30007D8663 /* Products */,
 				04080484B052048D20723B67 /* Pods */,
@@ -357,6 +360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				771177F424926B4500B0C36E /* TrackViewCell.xib in Resources */,
+				770F2C9E257AA78600869500 /* .gitignore in Resources */,
 				7705FF4724862D31007D8663 /* LaunchScreen.storyboard in Resources */,
 				7705FF4424862D31007D8663 /* Assets.xcassets in Resources */,
 				771177D72492552F00B0C36E /* SearchViewController.xib in Resources */,
